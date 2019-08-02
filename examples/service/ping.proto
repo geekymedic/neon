@@ -1,0 +1,12 @@
+syntax = "proto3";
+option objc_class_prefix = "HLW";
+package protobuf;
+service CheckHealth {
+    rpc	Ping(PingRequest) returns (PingResponse);
+}
+message PingRequest {
+    string Msg = 1;
+}
+message PingResponse {
+    string Msg = 1;
+}
