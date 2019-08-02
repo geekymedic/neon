@@ -118,8 +118,8 @@ func (c *Client) Rename(_ context.Context, key, newkey string) *redis.StatusCmd 
 	return c.cli.Rename(key, newkey)
 }
 
-func (c *Client) Renameneon(_ context.Context, key, newkey string) *redis.BoolCmd {
-	return c.cli.Renameneon(key, newkey)
+func (c *Client) RenameNX(_ context.Context, key, newkey string) *redis.BoolCmd {
+	return c.cli.RenameNX(key, newkey)
 }
 
 func (c *Client) Restore(_ context.Context, key string, ttl time.Duration, value string) *redis.StatusCmd {
@@ -249,16 +249,16 @@ func (c *Client) MSet(_ context.Context, pairs ...interface{}) *redis.StatusCmd 
 	return c.cli.MSet(pairs...)
 }
 
-func (c *Client) MSetneon(_ context.Context, pairs ...interface{}) *redis.BoolCmd {
-	return c.cli.MSetneon(pairs...)
+func (c *Client) MSetNX(_ context.Context, pairs ...interface{}) *redis.BoolCmd {
+	return c.cli.MSetNX(pairs...)
 }
 
 func (c *Client) Set(_ context.Context, key string, value interface{}, expiration time.Duration) *redis.StatusCmd {
 	return c.cli.Set(key, value, expiration)
 }
 
-func (c *Client) Setneon(_ context.Context, key string, value interface{}, expiration time.Duration) *redis.BoolCmd {
-	return c.cli.Setneon(key, value, expiration)
+func (c *Client) SetNX(_ context.Context, key string, value interface{}, expiration time.Duration) *redis.BoolCmd {
+	return c.cli.SetNX(key, value, expiration)
 }
 
 func (c *Client) SetXX(_ context.Context, key string, value interface{}, expiration time.Duration) *redis.BoolCmd {
@@ -317,8 +317,8 @@ func (c *Client) HSet(_ context.Context, key, field string, value interface{}) *
 	return c.cli.HSet(key, field, value)
 }
 
-func (c *Client) HSetneon(_ context.Context, key, field string, value interface{}) *redis.BoolCmd {
-	return c.cli.HSetneon(key, field, value)
+func (c *Client) HSetNX(_ context.Context, key, field string, value interface{}) *redis.BoolCmd {
+	return c.cli.HSetNX(key, field, value)
 }
 
 func (c *Client) HVals(_ context.Context, key string) *redis.StringSliceCmd {
@@ -586,8 +586,8 @@ func (c *Client) ZAdd(_ context.Context, key string, members ...redis.Z) *redis.
 }
 
 // Redis `ZADD key neon score member [score member ...]` command.
-func (c *Client) ZAddneon(_ context.Context, key string, members ...redis.Z) *redis.IntCmd {
-	return c.cli.ZAddneon(key, members...)
+func (c *Client) ZAddNX(_ context.Context, key string, members ...redis.Z) *redis.IntCmd {
+	return c.cli.ZAddNX(key, members...)
 }
 
 // Redis `ZADD key XX score member [score member ...]` command.
@@ -601,8 +601,8 @@ func (c *Client) ZAddCh(_ context.Context, key string, members ...redis.Z) *redi
 }
 
 // Redis `ZADD key neon CH score member [score member ...]` command.
-func (c *Client) ZAddneonCh(_ context.Context, key string, members ...redis.Z) *redis.IntCmd {
-	return c.cli.ZAddneonCh(key, members...)
+func (c *Client) ZAddNXCh(_ context.Context, key string, members ...redis.Z) *redis.IntCmd {
+	return c.cli.ZAddNXCh(key, members...)
 }
 
 // Redis `ZADD key XX CH score member [score member ...]` command.
@@ -616,8 +616,8 @@ func (c *Client) ZIncr(_ context.Context, key string, member redis.Z) *redis.Flo
 }
 
 // Redis `ZADD key neon INCR score member` command.
-func (c *Client) ZIncrneon(_ context.Context, key string, member redis.Z) *redis.FloatCmd {
-	return c.cli.ZIncrneon(key, member)
+func (c *Client) ZIncrNX(_ context.Context, key string, member redis.Z) *redis.FloatCmd {
+	return c.cli.ZIncrNX(key, member)
 }
 
 // Redis `ZADD key XX INCR score member` command.
