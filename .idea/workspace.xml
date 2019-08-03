@@ -2,13 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ef3ca26-f257-4379-848c-dd0e7314ebc0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/google-java-format.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/neon.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/validator/v9/v9.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/validator/v9/v9_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/service/main_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/examples/service/main_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/validator/main_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/validator/main_validator.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/modules.txt" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/modules.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
   </component>
   <component name="GOROOT" path="$USER_HOME$/opt/go" />
   <component name="Git.Settings">
@@ -19,6 +40,7 @@
   </component>
   <component name="ProjectId" id="1Oqux274LK2kV085k1DoPcjbBBK" />
   <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
@@ -39,6 +61,60 @@
       </list>
     </option>
   </component>
+  <component name="RunManager" selected="Go Test.TestPingCallChain in github.com/geekymedic/neon/examples/service">
+    <configuration name="TestExContains in github.com/geekymedic/neon/utils/validator/v9" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="neon" />
+      <working_directory value="$PROJECT_DIR$/utils/validator/v9" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/geekymedic/neon/utils/validator/v9" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestExContains$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestIdentify in github.com/geekymedic/neon/utils/validator/v9" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="neon" />
+      <working_directory value="$PROJECT_DIR$/utils/validator/v9" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/geekymedic/neon/utils/validator/v9" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestIdentify$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestPhoneNumber in github.com/geekymedic/neon/utils/validator/v9" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="neon" />
+      <working_directory value="$PROJECT_DIR$/utils/validator/v9" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/geekymedic/neon/utils/validator/v9" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestPhoneNumber$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestPingCallChain in github.com/geekymedic/neon/examples/service" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="neon" />
+      <working_directory value="$PROJECT_DIR$/examples/service" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/geekymedic/neon/examples/service" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestPingCallChain$" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Test.TestPingCallChain in github.com/geekymedic/neon/examples/service" />
+        <item itemvalue="Go Test.TestExContains in github.com/geekymedic/neon/utils/validator/v9" />
+        <item itemvalue="Go Test.TestPhoneNumber in github.com/geekymedic/neon/utils/validator/v9" />
+        <item itemvalue="Go Test.TestIdentify in github.com/geekymedic/neon/utils/validator/v9" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -47,7 +123,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

@@ -28,7 +28,6 @@ func (s *PingServer) Ping(ctx context.Context, req *PingRequest) (*PingResponse,
 	return &PingResponse{}, nil
 }
 
-
 func TestPingCallChain(t *testing.T) {
 	os.Setenv("neon_MODE", "test")
 	logger.SetLevel(logger.DebugLevel)
