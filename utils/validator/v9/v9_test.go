@@ -63,3 +63,16 @@ func TestExContains(t *testing.T) {
 
 	})
 }
+
+func TestCertNumber(t *testing.T) {
+	var validator = &defaultValidator{}
+	var arg = struct {
+		CertNumber string `binding:"et_cert"`
+	}{
+		CertNumber: "92440606L402631312",
+	}
+	
+	t.Run("", func(t *testing.T) {
+		assert.Nil(t, validator.validate.Struct(arg))
+	})
+}

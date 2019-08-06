@@ -63,6 +63,10 @@ func (v *defaultValidator) lazyinit() {
 		v.validate.RegisterValidation("et_nickname", func(fl validator.FieldLevel) bool {
 			return NickName(fl)
 		})
+
+		v.validate.RegisterValidation("et_cert", func(fl validator.FieldLevel) bool {
+			return CertNumber(fl)
+		})
 	})
 }
 
@@ -130,7 +134,6 @@ func PhoneNumber(fl validator.FieldLevel) bool {
 	return phoneNumberRegexp.MatchString(fl.Field().String())
 }
 
-
 func Chinese(fl validator.FieldLevel) bool {
 	value := fl.Field()
 	if value.Kind() != reflect.String {
@@ -171,4 +174,15 @@ func NickName(fl validator.FieldLevel) bool {
 		return false
 	}
 	return true
+}
+
+var certRegexp = regexp.MustCompile(`/(^(?:(?![IOZSV])[\dA-Z]){2}\d{6}(?:(?![IOZSV])[\dA-Z]){10}$)|(^\d{15}$)/`)
+
+func CertNumber(fl validator.FieldLevel) bool {
+	value := fl.Field()
+	if value.Kind() != reflect.String {
+		return false
+	}
+
+	return certRegexp.MatchString(value.String())
 }
