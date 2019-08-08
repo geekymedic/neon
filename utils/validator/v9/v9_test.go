@@ -33,7 +33,6 @@ func TestPhoneNumber(t *testing.T) {
 	assert.NotNil(t, validator.validate.Struct(arg))
 }
 
-
 func TestExContains(t *testing.T) {
 	var validator = &defaultValidator{}
 	validator.lazyinit()
@@ -58,21 +57,45 @@ func TestExContains(t *testing.T) {
 		arg.Name = "123"
 		assert.NotNil(t, validator.validate.Struct(arg))
 	})
-	
+
 	t.Run("bool", func(t *testing.T) {
 
 	})
 }
 
-func TestCertNumber(t *testing.T) {
+//func TestCertNumber(t *testing.T) {
+//	var validator = &defaultValidator{}
+//	var arg = struct {
+//		CertNumber string `binding:"et_cert"`
+//	}{
+//		CertNumber: "92440606L402631312",
+//	}
+//
+//	t.Run("", func(t *testing.T) {
+//		assert.Nil(t, validator.validate.Struct(arg))
+//	})
+//}
+
+func TestJson(t *testing.T) {
 	var validator = &defaultValidator{}
-	var arg = struct {
-		CertNumber string `binding:"et_cert"`
-	}{
-		CertNumber: "92440606L402631312",
-	}
-	
-	t.Run("", func(t *testing.T) {
+
+	validator.lazyinit()
+
+	t.Run("ok", func(t *testing.T) {
+		var arg = struct {
+			CertNumber string `binding:"et_json"`
+		}{
+			CertNumber: "{}",
+		}
 		assert.Nil(t, validator.validate.Struct(arg))
+	})
+
+	t.Run("fail", func(t *testing.T) {
+		var arg = struct {
+			CertNumber string `binding:"et_json"`
+		}{
+			CertNumber: "{''}",
+		}
+		assert.NotNil(t, validator.validate.Struct(arg))
 	})
 }

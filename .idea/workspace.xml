@@ -35,7 +35,8 @@
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="go.vgo" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -49,7 +50,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Test.TestCertNumber in github.com/geekymedic/neon/utils/validator/v9">
+  <component name="RunManager" selected="Go Test.TestJson in github.com/geekymedic/neon/utils/validator/v9">
     <configuration name="TestCertNumber in github.com/geekymedic/neon/utils/validator/v9" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="neon" />
       <working_directory value="$PROJECT_DIR$/utils/validator/v9" />
@@ -72,7 +73,7 @@
       <pattern value="^TestExContains$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestIdentify in github.com/geekymedic/neon/utils/validator/v9" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestJson in github.com/geekymedic/neon/utils/validator/v9" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="neon" />
       <working_directory value="$PROJECT_DIR$/utils/validator/v9" />
       <framework value="gotest" />
@@ -80,7 +81,7 @@
       <package value="github.com/geekymedic/neon/utils/validator/v9" />
       <directory value="$PROJECT_DIR$/" />
       <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestIdentify$" />
+      <pattern value="^TestJson$" />
       <method v="2" />
     </configuration>
     <configuration name="TestPhoneNumber in github.com/geekymedic/neon/utils/validator/v9" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -107,11 +108,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestJson in github.com/geekymedic/neon/utils/validator/v9" />
+        <item itemvalue="Go Test.TestPhoneNumber in github.com/geekymedic/neon/utils/validator/v9" />
         <item itemvalue="Go Test.TestCertNumber in github.com/geekymedic/neon/utils/validator/v9" />
         <item itemvalue="Go Test.TestPingCallChain in github.com/geekymedic/neon/examples/service" />
         <item itemvalue="Go Test.TestExContains in github.com/geekymedic/neon/utils/validator/v9" />
-        <item itemvalue="Go Test.TestPhoneNumber in github.com/geekymedic/neon/utils/validator/v9" />
-        <item itemvalue="Go Test.TestIdentify in github.com/geekymedic/neon/utils/validator/v9" />
       </list>
     </recent_temporary>
   </component>
@@ -133,6 +134,7 @@
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
+    <vendoring-mode>true</vendoring-mode>
     <proxy>direct</proxy>
   </component>
 </project>

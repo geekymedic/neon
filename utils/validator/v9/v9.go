@@ -1,15 +1,17 @@
 package v9
 
 import (
+	"encoding/json"
 	"fmt"
-	"github.com/gin-gonic/gin/binding"
-	"gopkg.in/go-playground/validator.v9"
 	"reflect"
 	"regexp"
 	"strings"
 	"sync"
 	"unicode"
 	"unicode/utf8"
+
+	"github.com/gin-gonic/gin/binding"
+	"gopkg.in/go-playground/validator.v9"
 )
 
 type defaultValidator struct {
@@ -64,8 +66,12 @@ func (v *defaultValidator) lazyinit() {
 			return NickName(fl)
 		})
 
-		v.validate.RegisterValidation("et_cert", func(fl validator.FieldLevel) bool {
-			return CertNumber(fl)
+		//v.validate.RegisterValidation("et_cert", func(fl validator.FieldLevel) bool {
+		//	return CertNumber(fl)
+		//})
+
+		v.validate.RegisterValidation("et_json", func(fl validator.FieldLevel) bool {
+			return Json(fl)
 		})
 	})
 }
@@ -176,13 +182,22 @@ func NickName(fl validator.FieldLevel) bool {
 	return true
 }
 
-var certRegexp = regexp.MustCompile(`/(^(?:(?![IOZSV])[\dA-Z]){2}\d{6}(?:(?![IOZSV])[\dA-Z]){10}$)|(^\d{15}$)/`)
+//var certRegexp = regexp.MustCompile(`/(^(?:(?![IOZSV])[\dA-Z]){2}\d{6}(?:(?![IOZSV])[\dA-Z]){10}$)|(^\d{15}$)/`)
+//
+//func CertNumber(fl validator.FieldLevel) bool {
+//	value := fl.Field()
+//	if value.Kind() != reflect.String {
+//		return false
+//	}
+//
+//	return certRegexp.MatchString(value.String())
+//}
 
-func CertNumber(fl validator.FieldLevel) bool {
+func Json(fl validator.FieldLevel) bool {
+	var i interface{}
 	value := fl.Field()
 	if value.Kind() != reflect.String {
 		return false
 	}
-
-	return certRegexp.MatchString(value.String())
+	return nil == json.NewDecoder(strings.NewReader(value.String())).Decode(&i)
 }
