@@ -177,12 +177,10 @@ func (db *DB) Begin() (*Tx, error) {
 	return &Tx{tx}, nil
 }
 
-type TxOptions struct {
-	txs *sql.TxOptions
-}
+type TxOptions = sql.TxOptions
 
 func (db *DB) BeginTx(ctx context.Context, opts *TxOptions) (*Tx, error) {
-	tx, err := db.db.BeginTx(ctx, opts.txs)
+	tx, err := db.db.BeginTx(ctx, opts)
 	if err != nil {
 		return nil, errors.Wrap(err)
 	}
@@ -300,7 +298,7 @@ func (c *Conn) PrepareContext(ctx context.Context, query string) (*Stmt, error) 
 }
 
 func (c *Conn) BeginTx(ctx context.Context, opts *TxOptions) (*Tx, error) {
-	tx, err := c.c.BeginTx(ctx, opts.txs)
+	tx, err := c.c.BeginTx(ctx, opts)
 	if err != nil {
 		return nil, errors.Wrap(err)
 	}
