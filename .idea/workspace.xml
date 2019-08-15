@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1ef3ca26-f257-4379-848c-dd0e7314ebc0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/db/db_util.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/db/db_util.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/validator/v9/validate.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/validator/v9/validate.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,7 +49,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Test.TestJson in github.com/geekymedic/neon/utils/validator/v9">
+  <component name="RunManager" selected="Go Test.TestExContains in github.com/geekymedic/neon/utils/validator/v9">
     <configuration name="TestCertNumber in github.com/geekymedic/neon/utils/validator/v9" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="neon" />
       <working_directory value="$PROJECT_DIR$/utils/validator/v9" />
@@ -107,11 +107,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestExContains in github.com/geekymedic/neon/utils/validator/v9" />
         <item itemvalue="Go Test.TestJson in github.com/geekymedic/neon/utils/validator/v9" />
         <item itemvalue="Go Test.TestPhoneNumber in github.com/geekymedic/neon/utils/validator/v9" />
         <item itemvalue="Go Test.TestCertNumber in github.com/geekymedic/neon/utils/validator/v9" />
         <item itemvalue="Go Test.TestPingCallChain in github.com/geekymedic/neon/examples/service" />
-        <item itemvalue="Go Test.TestExContains in github.com/geekymedic/neon/utils/validator/v9" />
       </list>
     </recent_temporary>
   </component>
