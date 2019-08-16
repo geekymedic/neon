@@ -40,7 +40,7 @@ func grpcLogMiddleware() grpc.UnaryServerInterceptor {
 }
 
 func grpcMetricsMiddleware() grpc.UnaryServerInterceptor {
-	if os.Getenv("neon_MODE") == "test" {
+	if os.Getenv("NEON_MODE") == "test" {
 		return func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (resp interface{}, err error) {
 			resp, err = handler(ctx, req)
 			return resp, err

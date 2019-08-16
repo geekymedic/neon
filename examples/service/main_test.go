@@ -29,7 +29,7 @@ func (s *PingServer) Ping(ctx context.Context, req *PingRequest) (*PingResponse,
 }
 
 func TestPingCallChain(t *testing.T) {
-	os.Setenv("neon_MODE", "test")
+	os.Setenv("NEON_MODE", "test")
 	logger.SetLevel(logger.DebugLevel)
 	ctx, cancel := context.WithCancel(context.TODO())
 	go serviceServer(t, ctx)

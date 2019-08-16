@@ -11,7 +11,7 @@ import (
 )
 
 func MetricsMiddleWare() func(ctx *gin.Context) {
-	if os.Getenv("neon_MODE") == "test" {
+	if os.Getenv("NEON_MODE") == "test" {
 		return func(ctx *gin.Context) {
 			ctx.Next()
 		}
