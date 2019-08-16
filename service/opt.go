@@ -15,3 +15,11 @@ func RegisterBeforeAppExitHook(opts ...func() error) {
 		beforeAppExit = append(beforeAppExit, opt)
 	}
 }
+
+func GetBeforeAppRun() []func() error {
+	return beforeAppRun
+}
+
+func GetBeforeAppExit() []func() error {
+	return beforeAppExit
+}
