@@ -50,11 +50,38 @@ func (m *State) httpJson(code int, v interface{}) {
 	m.Gin.Set(types.ResponseStatusCode, code)
 }
 
+func (m *State) httpJsonMessage(code int, message string, v interface{}) {
+	buf := bytes.NewBuffer(nil)
+	err := json.NewEncoder(buf).Encode(map[string]interface{}{
+		"Code":    code,
+		"Message": GetMessage(code) + "|" + message,
+		"Data":    v,
+	})
+	if err != nil {
+		logger.With("err", err).Error("fail to encode response")
+	}
+	m.Gin.Writer.WriteHeader(http.StatusOK)
+	_, err = m.Gin.Writer.Write(buf.Bytes())
+	log := logger.With(m.Session.ShortLog()...).With("gitcommit", version.GITCOMMIT)
+	if err != nil || code != CodeSuccess {
+		log.With("body", buf.String()).With("err", err).Error("http response trace")
+	} else {
+		log.With("body", buf.String()).Info("http response trace")
+	}
+
+	m.Gin.Set(types.ResponseStatusCode, code)
+}
+
 func (m *State) Error(code int, err error) {
 	if err != nil {
 		m.Logger.Error(err.Error())
 	}
 	m.httpJson(code, empty)
+}
+
+func (m *State) ErrorMessage(code int, txt string) {
+	m.Logger.Error(txt)
+	m.httpJsonMessage(code, txt, empty)
 }
 
 func (m *State) Success(v interface{}) {
