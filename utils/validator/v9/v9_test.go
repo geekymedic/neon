@@ -1,8 +1,11 @@
 package v9
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/stretchr/testify/assert"
 	"testing"
+	"time"
 )
 
 func TestIdentify(t *testing.T) {
@@ -97,5 +100,56 @@ func TestJson(t *testing.T) {
 			CertNumber: "{''}",
 		}
 		assert.NotNil(t, validator.validate.Struct(arg))
+	})
+}
+
+type ArgTime time.Time
+
+func (t *ArgTime) UnmarshalJSON(buf []byte) error {
+	var tm, err = time.Parse("2006-01-02 15:04:05", "2019-03-29 15:04:05")
+	if err != nil {
+		return err
+	}
+	*t = ArgTime(tm)
+	return nil
+}
+
+func (t *ArgTime) MarshalJSON() ([]byte, error) {
+	return []byte(time.Time(*t).Format("2006-01-02 15:04:05")), nil
+}
+
+func TestTime(t *testing.T) {
+	var validator = &defaultValidator{}
+	validator.lazyinit()
+
+	type Arg struct {
+		StartTime ArgTime
+	}
+
+	t.Run("", func(t *testing.T) {
+		var arg = Arg{
+
+		}
+		//validator.validate.Struct(arg)
+		err := json.Unmarshal([]byte(`{"StartTime":"2019-03-29 15:04:05"}`), &arg)
+		if err != nil {
+			t.Fatal(err)
+		}
+		t.Log(arg)
+
+		var p *int
+		buf, err := json.Marshal(p)
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println("-->", string(buf))
+
+		var pp *Arg
+		buf, err = json.Marshal(pp135004854809348715
+		)
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println("-->", string(buf))
 	})
 }

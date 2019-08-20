@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"github.com/geekymedic/neon/logger/extend"
+	"time"
 
 	"github.com/geekymedic/neon/logger"
 
@@ -22,6 +23,11 @@ type State struct {
 
 func (m *State) Context() context.Context {
 	return m.ctx
+}
+
+func(m *State) ContextWithTimeout(timeout time.Duration) context.Context {
+	ctx, _ := context.WithTimeout(m.ctx, timeout)
+	return ctx
 }
 
 func NewState(ctx context.Context) *State {
