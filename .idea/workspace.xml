@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ef3ca26-f257-4379-848c-dd0e7314ebc0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/utils/locker/lock.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/locker/lock_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bff/state.go" beforeDir="false" afterPath="$PROJECT_DIR$/bff/state.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,7 +50,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Go Test.lock_test.go">
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go test">
       <module name="neon" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -94,28 +95,33 @@
       <pattern value="^TestJson$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestTime in github.com/geekymedic/neon/utils/validator/v9" type="GoTestRunConfiguration" factoryName="Go test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestLock in github.com/geekymedic/neon/utils/locker" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="neon" />
-      <working_directory value="$PROJECT_DIR$/utils/validator/v9" />
+      <working_directory value="$PROJECT_DIR$/utils/locker" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
-      <package value="github.com/geekymedic/neon/utils/validator/v9" />
+      <package value="github.com/geekymedic/neon/utils/locker" />
       <directory value="$PROJECT_DIR$/" />
       <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestTime$" />
+      <pattern value="^TestLock$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestTime/#00 in github.com/geekymedic/neon/utils/validator/v9" type="GoTestRunConfiguration" factoryName="Go test" temporary="true" nameIsGenerated="true">
+    <configuration name="lock_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="neon" />
-      <working_directory value="$PROJECT_DIR$/utils/validator/v9" />
+      <working_directory value="$PROJECT_DIR$/utils/locker" />
       <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="github.com/geekymedic/neon/utils/validator/v9" />
+      <kind value="FILE" />
+      <package value="github.com/geekymedic/neon" />
       <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestTime$/^#00$" />
+      <filePath value="$PROJECT_DIR$/utils/locker/lock_test.go" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Test.lock_test.go" />
+        <item itemvalue="Go Test.TestLock in github.com/geekymedic/neon/utils/locker" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
