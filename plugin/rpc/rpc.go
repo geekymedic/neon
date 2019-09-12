@@ -5,6 +5,7 @@ import (
 	"fmt"
 	grpc_retry "github.com/grpc-ecosystem/go-grpc-middleware/retry"
 	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 	"path"
 	"strings"
 	"time"
@@ -53,7 +54,8 @@ func grpcClientLog() grpc.UnaryClientInterceptor {
 		ses := neon.CreateSessionFromGrpcOutgoingContext(ctx)
 		startTime := time.Now()
 		err := invoker(ctx, method, req, reply, cc, opts...)
-		log := logger.With(sessionTraceLog(ses)...).With("grpc.service", service, "grpc.method", serviceMethod, "latency", fmt.Sprintf("%v", time.Now().Sub(startTime)))
+		log := logger.With(sessionTraceLog(ses)...).With("code", status.Code(err).String()).
+			With("grpc.service", service, "grpc.method", serviceMethod, "latency", fmt.Sprintf("%v", time.Now().Sub(startTime)))
 		if err != nil {
 			log.With("err", err).Error("finished client unary call")
 		} else {
