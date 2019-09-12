@@ -3,6 +3,8 @@ package rpc
 import (
 	"context"
 	"fmt"
+	grpc_retry "github.com/grpc-ecosystem/go-grpc-middleware/retry"
+	"google.golang.org/grpc/codes"
 	"path"
 	"strings"
 	"time"
@@ -23,7 +25,8 @@ func init() {
 		case neon.PluginLoad:
 			servers := viper.GetStringMapString("servers")
 			for name, address := range servers {
-				conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithUnaryInterceptor(grpcClientLog()))
+				conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithUnaryInterceptor(grpcClientLog()),
+					grpc.WithUnaryInterceptor(grpc_retry.UnaryClientInterceptor(retryMiddle()...)))
 				if err != nil {
 					return errors.By(err)
 				}
@@ -58,6 +61,14 @@ func grpcClientLog() grpc.UnaryClientInterceptor {
 		}
 		return err
 	}
+}
+
+func retryMiddle() []grpc_retry.CallOption {
+	retryOpt := []grpc_retry.CallOption{
+		grpc_retry.WithBackoff(grpc_retry.BackoffLinear(100 * time.Millisecond)),
+		grpc_retry.WithCodes(codes.NotFound, codes.Aborted),
+	}
+	return retryOpt
 }
 
 func sessionTraceLog(ses *neon.Session) []interface{} {

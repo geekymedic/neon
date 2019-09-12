@@ -3,14 +3,14 @@ package middleware
 import (
 	"context"
 	"fmt"
+	"os"
+	"time"
+
 	"github.com/geekymedic/neon"
 	"github.com/geekymedic/neon/logger"
 	"github.com/geekymedic/neon/logger/extend"
 	"github.com/geekymedic/neon/metrics/prometheus"
 	"github.com/geekymedic/neon/version"
-	"os"
-	"time"
-
 	"github.com/grpc-ecosystem/go-grpc-middleware"
 	"google.golang.org/grpc"
 )
