@@ -54,15 +54,16 @@ func grpcClientLog() grpc.UnaryClientInterceptor {
 		ses := neon.CreateSessionFromGrpcOutgoingContext(ctx)
 		startTime := time.Now()
 		var err error
-		for i := 0; i < 5; i++ {
-			err = invoker(ctx, method, req, reply, cc, opts...)
-			if status.Code(err) == codes.Unavailable {
-				time.Sleep(time.Millisecond * 100)
-				logger.Warn("Try again")
-			}else {
-				break
-			}
-		}
+		err = invoker(ctx, method, req, reply, cc, opts...)
+		//for i := 0; i < 5; i++ {
+		//	err = invoker(ctx, method, req, reply, cc, opts...)
+		//	if status.Code(err) == codes.Unavailable {
+		//		time.Sleep(time.Millisecond * 100)
+		//		logger.Warn("Try again")
+		//	}else {
+		//		break
+		//	}
+		//}
 		log := logger.With(sessionTraceLog(ses)...).With("code", status.Code(err).String()).
 			With("grpc.service", service, "grpc.method", serviceMethod, "latency", fmt.Sprintf("%v", time.Now().Sub(startTime)))
 		if err != nil {
@@ -77,7 +78,7 @@ func grpcClientLog() grpc.UnaryClientInterceptor {
 func retryMiddle() []grpc_retry.CallOption {
 	retryOpt := []grpc_retry.CallOption{
 		grpc_retry.WithBackoff(grpc_retry.BackoffLinear(100 * time.Millisecond)),
-		grpc_retry.WithCodes(codes.Unavailable),
+		grpc_retry.WithCodes(codes.NotFound, codes.Aborted),
 	}
 	return retryOpt
 }
