@@ -53,7 +53,16 @@ func grpcClientLog() grpc.UnaryClientInterceptor {
 		serviceMethod := path.Base(method)
 		ses := neon.CreateSessionFromGrpcOutgoingContext(ctx)
 		startTime := time.Now()
-		err := invoker(ctx, method, req, reply, cc, opts...)
+		var err error
+		for i := 0; i < 5; i++ {
+			err = invoker(ctx, method, req, reply, cc, opts...)
+			if status.Code(err) == codes.Unavailable {
+				time.Sleep(time.Millisecond * 100)
+				logger.Warn("Try again")
+			}else {
+				break
+			}
+		}
 		log := logger.With(sessionTraceLog(ses)...).With("code", status.Code(err).String()).
 			With("grpc.service", service, "grpc.method", serviceMethod, "latency", fmt.Sprintf("%v", time.Now().Sub(startTime)))
 		if err != nil {
