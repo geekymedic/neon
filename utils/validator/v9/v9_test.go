@@ -24,16 +24,30 @@ func TestIdentify(t *testing.T) {
 
 func TestPhoneNumber(t *testing.T) {
 	var validator = &defaultValidator{}
-	var arg = struct {
-		Phone string `binding:"et_phone"`
-	}{
-		Phone: "13760049089",
-	}
 	validator.lazyinit()
-	assert.Nil(t, validator.validate.Struct(arg))
 
-	arg.Phone = "10798430128"
-	assert.NotNil(t, validator.validate.Struct(arg))
+	t.Run("ok", func(t *testing.T) {
+		var arg = []struct {
+			Phone string `binding:"et_phone"`
+		}{
+			{
+				Phone: "13760049089",
+			},
+			{
+				Phone: "15302607097",
+			},
+			{
+				Phone: "17600320367",
+			},
+			{
+				Phone: "18902313636",
+			},
+		}
+
+		for _, arg := range arg {
+			assert.Nil(t, validator.validate.Struct(arg))
+		}
+	})
 }
 
 func TestExContains(t *testing.T) {
@@ -139,14 +153,6 @@ func TestTime(t *testing.T) {
 
 		var p *int
 		buf, err := json.Marshal(p)
-		if err != nil {
-			fmt.Println(err)
-		}
-		fmt.Println("-->", string(buf))
-
-		var pp *Arg
-		buf, err = json.Marshal(pp135004854809348715
-		)
 		if err != nil {
 			fmt.Println(err)
 		}
