@@ -131,7 +131,7 @@ func Identity(fl validator.FieldLevel) bool {
 	return identityRegexp.MatchString(fl.Field().String())
 }
 
-var phoneNumberRegexp = regexp.MustCompile(`^1([38][0-9]|14[57]|5[^4])\d{8}$`)
+var phoneNumberRegexp = regexp.MustCompile(`^1([3578][0-9]|14[57]|5[^4])\d{8}$`)
 
 func PhoneNumber(fl validator.FieldLevel) bool {
 	if fl.Field().Kind() != reflect.String {
