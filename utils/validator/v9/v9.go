@@ -28,7 +28,7 @@ func (v *defaultValidator) ValidateStruct(obj interface{}) error {
 		v.lazyinit()
 
 		if err := v.validate.Struct(obj); err != nil {
-			return error(err)
+			return err
 		}
 	}
 
