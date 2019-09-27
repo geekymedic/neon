@@ -1,6 +1,8 @@
 package metrics
 
 import (
+	_ "net/http/pprof"
+
 	"github.com/geekymedic/neon"
 	"github.com/geekymedic/neon/errors"
 	"github.com/geekymedic/neon/logger"
