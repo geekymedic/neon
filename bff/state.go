@@ -4,8 +4,9 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"github.com/geekymedic/neon/bff/types"
 	"net/http"
+
+	"github.com/geekymedic/neon/bff/types"
 
 	"github.com/geekymedic/neon"
 	"github.com/geekymedic/neon/errors"
@@ -29,6 +30,9 @@ type State struct {
 }
 
 func (m *State) httpJson(code int, v interface{}) {
+	if m.Gin.Writer.Written() {
+		return
+	}
 	buf := bytes.NewBuffer(nil)
 	err := json.NewEncoder(buf).Encode(map[string]interface{}{
 		"Code":    code,
@@ -51,6 +55,9 @@ func (m *State) httpJson(code int, v interface{}) {
 }
 
 func (m *State) httpJsonMessage(code int, message string, v interface{}) {
+	if m.Gin.Writer.Written() {
+		return
+	}
 	buf := bytes.NewBuffer(nil)
 	err := json.NewEncoder(buf).Encode(map[string]interface{}{
 		"Code":    code,
