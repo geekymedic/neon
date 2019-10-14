@@ -110,6 +110,9 @@ func (m *State) BindJSON(v interface{}) error {
 }
 
 func (m *State) ShouldBindJSON(v interface{}) error {
+	if m.Gin.Writer.Written() {
+		return nil
+	}
 	return errors.By(m.Gin.ShouldBindJSON(v))
 }
 
