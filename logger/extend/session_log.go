@@ -17,5 +17,6 @@ func NewSessionLog(session *neon.Session) logger.Logger {
 		"_describe", session.Describe,
 		"_trace", session.Trace,
 		"_sequence", session.Sequence,
-		"_time", session.Time)
+		"_time", session.Time,
+		"_path", session.Path)
 }

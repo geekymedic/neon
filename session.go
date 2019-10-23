@@ -43,6 +43,7 @@ type Session struct {
 	Sequence string
 	Time     string
 	StoreId  string
+	Path     string
 }
 
 func (m *Session) SetRandomTrace() {
@@ -101,6 +102,7 @@ func (m *Session) ShortLog() []interface{} {
 		"_sequence", m.Sequence,
 		"_time", m.Time,
 		"_storeId", m.StoreId,
+		"_path", m.Path,
 	}
 }
 
@@ -161,6 +163,7 @@ func NewSessionFromGinCtx(ctx *gin.Context) *Session {
 	if s.Trace == "" {
 		s.Trace = uuid.Must(uuid.NewRandom()).String()
 	}
+	s.Path = ctx.Request.URL.Path
 	return s
 }
 
