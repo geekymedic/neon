@@ -75,7 +75,7 @@ func RequestTraceMiddle(log logger.Logger, failOut map[string]interface{}, ignor
 
 				contentSize := c.Request.Header.Get("Content-Length")
 				sessionLog := session.ShortLog()
-				log := log.With("pro_name", version.PRONAME, "gitcommit", version.GITCOMMIT, "path", param.Path,
+				log := log.With("pro_name", version.PRONAME, "gitcommit", version.GITCOMMIT,
 					"method", param.Method,
 					"status", param.StatusCode,
 					"req_size", contentSize,

@@ -163,7 +163,11 @@ func NewSessionFromGinCtx(ctx *gin.Context) *Session {
 	if s.Trace == "" {
 		s.Trace = uuid.Must(uuid.NewRandom()).String()
 	}
-	s.Path = ctx.Request.URL.Path
+	if ctx.Request.URL.RawQuery != "" {
+		s.Path = ctx.Request.URL.Path + "?" + ctx.Request.URL.RawQuery
+	}else {
+		s.Path = ctx.Request.URL.Path
+	}
 	return s
 }
 
