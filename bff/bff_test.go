@@ -4,19 +4,21 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/geekymedic/neon"
-	"github.com/geekymedic/neon/logger"
-	"github.com/gin-gonic/gin"
-	"github.com/gin-gonic/gin/binding"
-	"github.com/spf13/viper"
 	"io/ioutil"
 	"net"
 	"net/http"
 	"testing"
 	"time"
 
-	_ "github.com/geekymedic/neon/plugin/metrics"
+	"github.com/gin-gonic/gin"
+	"github.com/spf13/viper"
+
+	"github.com/geekymedic/neon"
+	"github.com/geekymedic/neon/logger"
+
 	"github.com/stretchr/testify/assert"
+
+	_ "github.com/geekymedic/neon/plugin/metrics"
 )
 
 func TestEngine(t *testing.T) {
@@ -30,7 +32,9 @@ func TestEngine(t *testing.T) {
 			t.Log(state.Trace, state.Version)
 			//json.NewDecoder(context.Request.Body).Decode(&id)
 
-			err = state.Gin.ShouldBindBodyWith(&id, binding.JSON)
+			err = state.ShouldBindJSON(&id)
+			// ValidationErrors
+
 			assert.Nil(t, err)
 			body, _ := state.Gin.Get(gin.BodyBytesKey)
 			t.Log(body)
@@ -43,8 +47,8 @@ func TestEngine(t *testing.T) {
 
 	time.Sleep(time.Second)
 	var id = struct {
-		Id string `json:"id"`
-	}{Id: "Hello Word"}
+		Id int `json:"id"`
+	}{Id: 10}
 	var buf bytes.Buffer
 	assert.Nil(t, json.NewEncoder(&buf).Encode(id))
 	_, err = http.Post("http://localhost:8080/test?_trace=10313&_version=10.30", "Application/json", &buf)

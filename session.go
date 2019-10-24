@@ -30,20 +30,21 @@ _storeId 店铺Id N 店铺的id
 */
 
 type Session struct {
-	Uid      string
-	Token    string
-	Platform string
-	Version  string
-	Net      string
-	Mobile   string
-	OS       string
-	Device   string
-	Describe string
-	Trace    string
-	Sequence string
-	Time     string
-	StoreId  string
-	Path     string
+	Uid         string
+	Token       string
+	Platform    string
+	Version     string
+	Net         string
+	Mobile      string
+	OS          string
+	Device      string
+	Describe    string
+	Trace       string
+	Sequence    string
+	Time        string
+	StoreId     string
+	Path        string
+	StructError string
 }
 
 func (m *Session) SetRandomTrace() {
@@ -103,6 +104,7 @@ func (m *Session) ShortLog() []interface{} {
 		"_time", m.Time,
 		"_storeId", m.StoreId,
 		"_path", m.Path,
+		"_struct_error", m.StructError,
 	}
 }
 
@@ -165,7 +167,7 @@ func NewSessionFromGinCtx(ctx *gin.Context) *Session {
 	}
 	if ctx.Request.URL.RawQuery != "" {
 		s.Path = ctx.Request.URL.Path + "?" + ctx.Request.URL.RawQuery
-	}else {
+	} else {
 		s.Path = ctx.Request.URL.Path
 	}
 	return s

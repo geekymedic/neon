@@ -120,7 +120,11 @@ func (m *State) ShouldBindJSON(v interface{}) error {
 	if m.Gin.Writer.Written() {
 		return nil
 	}
-	return errors.By(m.Gin.ShouldBindJSON(v))
+	if err := m.Gin.ShouldBindJSON(v); err != nil {
+		m.Session.StructError = err.Error()
+		return errors.By(err)
+	}
+	return nil
 }
 
 func newSessionCtx(ctx context.Context, session *neon.Session) context.Context {
