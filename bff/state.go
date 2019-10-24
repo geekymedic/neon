@@ -61,7 +61,7 @@ func (m *State) httpJsonMessage(code int, message string, v interface{}) {
 	buf := bytes.NewBuffer(nil)
 	err := json.NewEncoder(buf).Encode(map[string]interface{}{
 		"Code":    code,
-		"Message": GetMessage(code) + "|" + message,
+		"Message": message,
 		"Data":    v,
 	})
 	if err != nil {

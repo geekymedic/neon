@@ -34,7 +34,10 @@ func TestEngine(t *testing.T) {
 
 			err = state.ShouldBindJSON(&id)
 			// ValidationErrors
-
+			if err != nil {
+				state.ErrorMessage(8000, err.Error())
+				return
+			}
 			assert.Nil(t, err)
 			body, _ := state.Gin.Get(gin.BodyBytesKey)
 			t.Log(body)

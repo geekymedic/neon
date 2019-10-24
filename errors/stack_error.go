@@ -210,6 +210,17 @@ func Format(format string, v ...interface{}) error {
 	}
 }
 
+func ShortMsg(err error) string {
+	if err == nil {
+		return ""
+	}
+	e, ok := err.(*StackError)
+	if ok {
+		return e.ShortTerm()
+	}
+	return err.Error()
+}
+
 //ByEx creates a new stack error with std error
 func By(err error) error {
 	if err == nil {

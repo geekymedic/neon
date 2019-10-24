@@ -5,7 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bff/bff_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/bff/bff_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bff/state.go" beforeDir="false" afterPath="$PROJECT_DIR$/bff/state.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/session.go" beforeDir="false" afterPath="$PROJECT_DIR$/session.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/errors/stack_error.go" beforeDir="false" afterPath="$PROJECT_DIR$/errors/stack_error.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/errors/stack_error_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/errors/stack_error_test.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,7 +52,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Go Test.TestWrap/shortMsg in github.com/geekymedic/neon/errors">
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go test">
       <module name="neon" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -63,15 +64,26 @@
       <filePath value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
-    <configuration name="TestCertNumber in github.com/geekymedic/neon/utils/validator/v9" type="GoTestRunConfiguration" factoryName="Go test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestEngine in github.com/geekymedic/neon/bff" type="GoTestRunConfiguration" factoryName="Go $NEON_MODE$" temporary="true" nameIsGenerated="true">
       <module name="neon" />
-      <working_directory value="$PROJECT_DIR$/utils/validator/v9" />
+      <working_directory value="$PROJECT_DIR$/bff" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
-      <package value="github.com/geekymedic/neon/utils/validator/v9" />
+      <package value="github.com/geekymedic/neon/bff" />
       <directory value="$PROJECT_DIR$/" />
       <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestCertNumber$" />
+      <pattern value="^TestEngine$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestEngine in github.com/geekymedic/neon/bff" type="GoTestRunConfiguration" factoryName="Go test" temporary="true" nameIsGenerated="true">
+      <module name="neon" />
+      <working_directory value="$PROJECT_DIR$/bff" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/geekymedic/neon/bff" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestEngine$" />
       <method v="2" />
     </configuration>
     <configuration name="TestEngine in github.com/geekymedic/neon/bff" type="GoTestRunConfiguration" factoryName="Go test" temporary="true" nameIsGenerated="true">
@@ -107,17 +119,23 @@
       <pattern value="^TestLock$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestPhoneNumber in github.com/geekymedic/neon/utils/validator/v9" type="GoTestRunConfiguration" factoryName="Go test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestWrap/shortMsg in github.com/geekymedic/neon/errors" type="GoTestRunConfiguration" factoryName="Go $NEON_MODE$" temporary="true" nameIsGenerated="true">
       <module name="neon" />
-      <working_directory value="$PROJECT_DIR$/utils/validator/v9" />
+      <working_directory value="$PROJECT_DIR$/errors" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
-      <package value="github.com/geekymedic/neon/utils/validator/v9" />
+      <package value="github.com/geekymedic/neon/errors" />
       <directory value="$PROJECT_DIR$/" />
       <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestPhoneNumber$" />
+      <pattern value="^TestWrap$/^shortMsg$" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Test.TestWrap/shortMsg in github.com/geekymedic/neon/errors" />
+        <item itemvalue="Go Test.TestEngine in github.com/geekymedic/neon/bff" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />

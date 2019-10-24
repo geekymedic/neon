@@ -173,6 +173,11 @@ func TestWrap(t *testing.T) {
 			}
 		}
 	})
+
+	t.Run("shortMsg", func(t *testing.T) {
+		err := Wrap(errors.New("stack One"))
+		t.Log(ShortMsg(err))
+	})
 }
 
 //go:noinline
