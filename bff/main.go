@@ -1,16 +1,21 @@
 package bff
 
 import (
+	"context"
 	"flag"
 	"fmt"
-	"github.com/geekymedic/neon/version"
 	"net"
 	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
+	"time"
 
 	"github.com/geekymedic/neon"
 	"github.com/geekymedic/neon/config"
 	"github.com/geekymedic/neon/errors"
 	"github.com/geekymedic/neon/logger"
+	"github.com/geekymedic/neon/version"
 
 	"github.com/spf13/viper"
 )
@@ -50,6 +55,10 @@ func Main() error {
 		}
 	}()
 
+	srv := &http.Server{
+		Addr:    address,
+		Handler: _engine,
+	}
 	l, err := net.Listen("tcp", address)
 
 	if err != nil {
@@ -59,5 +68,23 @@ func Main() error {
 		logger.Infof("listen %s", l.Addr())
 	}
 
-	return http.Serve(l, _engine)
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
+	go func() {
+		err = srv.ListenAndServe()
+		if err != nil {
+			logger.Errorf("listen %s fail, %v\n", address, err)
+			err = errors.By(err)
+		} else {
+			logger.Infof("listen %s", l.Addr())
+		}
+	}()
+	<-c
+
+	logger.Info("Shutdown server ...")
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	err = srv.Shutdown(ctx)
+	return errors.Wrap(err)
 }
