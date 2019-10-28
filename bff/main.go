@@ -4,7 +4,6 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	"net"
 	"net/http"
 	"os"
 	"os/signal"
@@ -59,25 +58,19 @@ func Main() error {
 		Addr:    address,
 		Handler: _engine,
 	}
-	l, err := net.Listen("tcp", address)
-
-	if err != nil {
-		logger.Errorf("listen %s fail, %v\n", address, err)
-		return errors.By(err)
-	} else {
-		logger.Infof("listen %s", l.Addr())
-	}
 
 	c := make(chan os.Signal, 1)
 	signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
 	go func() {
+		logger.With("address", srv.Addr).Info("Start listen...")
 		err = srv.ListenAndServe()
 		if err != nil {
 			logger.Errorf("listen %s fail, %v\n", address, err)
 			err = errors.By(err)
 		} else {
-			logger.Infof("listen %s", l.Addr())
+			logger.Infof("listen %s", srv.Addr)
 		}
+		c<- syscall.SIGTERM
 	}()
 	<-c
 
