@@ -12,14 +12,42 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 
 	"github.com/geekymedic/neon"
 	"github.com/geekymedic/neon/logger"
-
-	"github.com/stretchr/testify/assert"
-
 	_ "github.com/geekymedic/neon/plugin/metrics"
 )
+
+func TestHttpHandleFunc(t *testing.T) {
+	l, err := net.Listen("tcp", ":8080")
+	require.Nil(t, err)
+	go func() {
+		_engine.POST("/test", HttpHandleFunc(func(state *State) (i interface{}, i2 int, e error) {
+			var id = struct {
+				Id string `json:"id"`
+			}{}
+			err = state.ShouldBindJSON(&id)
+			if err != nil {
+				return nil, CodeRequestBodyError, nil
+			}
+			return empty, CodeSuccess, nil
+		}))
+		err = http.Serve(l, _engine)
+	}()
+	time.Sleep(time.Second)
+	var id = struct {
+		Id interface{} `json:"id"`
+	}{Id: 10}
+	var buf bytes.Buffer
+	require.Nil(t, json.NewEncoder(&buf).Encode(id))
+	// _, err = http.Post("http://localhost:8080/test?_trace=10313&_version=10.30", "Application/json", &buf)
+	// require.Nil(t, err)
+	id.Id = "1999"
+	_, err = http.Post("http://localhost:8080/test?_trace=10314&_version=10.30&_uid=100", "Application/json", nil)
+	require.Nil(t, err)
+}
 
 func TestEngine(t *testing.T) {
 	l, err := net.Listen("tcp", ":8080")
@@ -30,12 +58,12 @@ func TestEngine(t *testing.T) {
 				Id string `json:"id"`
 			}{}
 			t.Log(state.Trace, state.Version)
-			//json.NewDecoder(context.Request.Body).Decode(&id)
+			// json.NewDecoder(context.Request.Body).Decode(&id)
 
 			err = state.ShouldBindJSON(&id)
 			// ValidationErrors
 			if err != nil {
-				state.ErrorMessage(8000, err.Error())
+				state.Error(8000, err)
 				return
 			}
 			assert.Nil(t, err)
@@ -74,11 +102,11 @@ func TestGroup(t *testing.T) {
 	}).GET("/ping", func(context *gin.Context) {
 		fmt.Println("ping")
 	})
-	//i := 0
+	// i := 0
 	engine.GET("/test", func(context *gin.Context) {
 		state := NewState(context)
 		state.httpJson(0, map[string]string{})
-		//fmt.Println(2 / i)
+		// fmt.Println(2 / i)
 	})
 	neon.LoadPlugins(viper.GetViper())
 	go func() {

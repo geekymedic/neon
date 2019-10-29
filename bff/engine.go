@@ -1,9 +1,6 @@
 package bff
 
 import (
-	"github.com/geekymedic/neon/bff/middleware"
-	"github.com/geekymedic/neon/logger"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -14,8 +11,8 @@ var (
 
 func init() {
 	_group.Use(
-		middleware.MetricsMiddleWare(),
-		middleware.RequestTraceMiddle(logger.DefLogger(), map[string]interface{}{
+		MetricsMiddleWare(),
+		RequestTraceMiddle(map[string]interface{}{
 			"Code":    CodeServerError,
 			"Message": GetMessage(CodeServerError),
 		}))

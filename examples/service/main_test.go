@@ -4,21 +4,22 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"github.com/geekymedic/neon/logger"
-	"github.com/geekymedic/neon/plugin/rpc"
 	"net"
 	"net/http"
 	"os"
 	"testing"
 	"time"
 
-	"github.com/geekymedic/neon/bff"
-	"github.com/geekymedic/neon/service"
-	"github.com/gin-gonic/gin/binding"
+	"github.com/geekymedic/neon/logger"
+	"github.com/geekymedic/neon/plugin/rpc"
+
 	"github.com/google/uuid"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc"
+
+	"github.com/geekymedic/neon/bff"
+	"github.com/geekymedic/neon/service"
 )
 
 type PingServer struct{}
@@ -35,9 +36,11 @@ func TestPingCallChain(t *testing.T) {
 	go serviceServer(t, ctx)
 	go bffServer(t, ctx)
 	time.Sleep(time.Second)
-	callhttp(t, ctx)
+	callhttpOk(t, ctx)
+	time.Sleep(time.Second)
+	callhttpFail(t, ctx)
 	cancel()
-	time.Sleep(time.Second * 3)
+
 }
 
 func serviceServer(t *testing.T, ctx context.Context) {
@@ -56,10 +59,14 @@ func bffServer(t *testing.T, ctx context.Context) {
 		var id = struct {
 			Id string `json:"id"`
 		}{}
+		err := state.ShouldBindJSON(&id)
+		if err != nil {
+			state.Error(bff.CodeRequestBodyError, err)
+			return
+		}
 		t.Log("trace", state.Trace, "version", state.Version)
-		err = state.Gin.ShouldBindBodyWith(&id, binding.JSON)
-		assert.Nil(t, err)
 		callRpc(t, state)
+		panic("测试")
 		state.Success("ok")
 	}))
 	err = http.Serve(l, bff.MockEngine())
@@ -70,15 +77,25 @@ func callRpc(t *testing.T, state *bff.State) {
 	conn, err := grpc.Dial("localhost:8910", grpc.WithInsecure(), grpc.WithUnaryInterceptor(rpc.MockGrpcClientLog()))
 	assert.Nil(t, err)
 	client := NewCheckHealthClient(conn)
-	resp, err := client.Ping(state.GrpcClientCtx(), &PingRequest{Msg:"http_client_request"})
+	resp, err := client.Ping(state.GrpcClientCtx(), &PingRequest{Msg: "http_client_request"})
 	assert.Nil(t, err)
 	t.Log(resp)
 }
 
-func callhttp(t *testing.T, ctx context.Context) {
+func callhttpOk(t *testing.T, ctx context.Context) {
 	var id = struct {
 		Id string `json:"id"`
 	}{Id: uuid.Must(uuid.NewUUID()).String()}
+	var buf bytes.Buffer
+	assert.Nil(t, json.NewEncoder(&buf).Encode(id))
+	_, err := http.Post("http://localhost:8080/api/id?_trace=10313&_version=10.30", "Application/json", &buf)
+	assert.Nil(t, err)
+}
+
+func callhttpFail(t *testing.T, ctx context.Context) {
+	var id = struct {
+		Id interface{} `json:"id"`
+	}{Id: 100}
 	var buf bytes.Buffer
 	assert.Nil(t, json.NewEncoder(&buf).Encode(id))
 	_, err := http.Post("http://localhost:8080/api/id?_trace=10313&_version=10.30", "Application/json", &buf)

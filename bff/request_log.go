@@ -1,4 +1,4 @@
-package middleware
+package bff
 
 import (
 	"fmt"
@@ -9,26 +9,36 @@ import (
 
 	"github.com/geekymedic/neon"
 	"github.com/geekymedic/neon/bff/types"
-	"github.com/geekymedic/neon/logger"
 	"github.com/geekymedic/neon/version"
 
 	"github.com/gin-gonic/gin"
 )
 
-func RequestTraceMiddle(log logger.Logger, failOut map[string]interface{}, ignore ...string) gin.HandlerFunc {
+func RequestTraceMiddle(failOut map[string]interface{}, ignore ...string) gin.HandlerFunc {
 	var skips = map[string]struct{}{}
 	for _, _ignore := range ignore {
 		skips[_ignore] = struct{}{}
 	}
 	return func(c *gin.Context) {
-
+		state := NewState(c)
+		log := state.Logger
 		// Start timer
 		start := time.Now()
 		path := c.Request.URL.Path
 		raw := c.Request.URL.RawQuery
-		session := neon.NewSessionFromGinCtx(c)
 		defer func() {
 			err := recover()
+			if err != nil {
+				if !c.Writer.Written() {
+					c.JSON(http.StatusOK, failOut)
+					c.Set(types.ResponseStatusCode, failOut["Code"])
+				}
+				var buf [1024]byte
+				runtime.Stack(buf[:], true)
+				log.With("stack", err, "full-stack", fmt.Sprintf("%s", buf)).Error("panic stack")
+				return
+			}
+			session := neon.NewSessionFromGinCtx(c)
 
 			// Log only when path is not being skipped
 			if _, ok := skips[path]; !ok {
@@ -75,7 +85,7 @@ func RequestTraceMiddle(log logger.Logger, failOut map[string]interface{}, ignor
 
 				contentSize := c.Request.Header.Get("Content-Length")
 				sessionLog := session.ShortLog()
-				log := log.With("pro_name", version.PRONAME, "gitcommit", version.GITCOMMIT,
+				log = log.With("pro_name", version.PRONAME, "gitcommit", version.ShortGitCommit(),
 					"method", param.Method,
 					"status", param.StatusCode,
 					"req_size", contentSize,
@@ -83,26 +93,22 @@ func RequestTraceMiddle(log logger.Logger, failOut map[string]interface{}, ignor
 					"latency", fmt.Sprintf("%v", param.Latency),
 					"client_ip", param.ClientIP,
 				).With(sessionLog...)
-				if param.ErrorMessage != "" {
-					log.With("err", param.ErrorMessage).Error("http request trace")
-					log.With("trace", session.Trace,
-						"body", string(body)[:bodySize]).Error("request body")
-				} else {
-					log.Info("http request trace")
-					log.With("trace", session.Trace,
-						"body", string(body)[:bodySize]).Info("request body")
-				}
-			}
-			if err != nil {
-				if !c.Writer.Written() {
-					c.JSON(http.StatusOK, failOut)
-					c.Set(types.ResponseStatusCode, failOut["Code"])
-				}
 
-				log.With("panic", err).Error("process panic")
-				var buf [1024]byte
-				runtime.Stack(buf[:], true)
-				log.With("stack", fmt.Sprintf("%s", buf)).Error("panic stack")
+				code, ok := c.Get(types.ResponseStatusCode)
+				if ok {
+					log = log.With("err_code", code)
+				}
+				msg, ok := c.Get(types.ResponseErr)
+				if ok {
+					log = log.With("trace_msg", msg)
+				}
+				if code == 0 {
+					log.Info("http trace log")
+				} else if code == CodeServerError {
+					log.With("inbound", string(body)).Warn("http trace log")
+				} else if code == CodeRequestBodyError {
+					log.With("inbound", string(body)).Warn("http trace log")
+				}
 			}
 		}()
 

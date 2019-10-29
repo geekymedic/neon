@@ -27,6 +27,13 @@ func Version() string {
 	return s
 }
 
+func ShortGitCommit() string {
+	if len(GITCOMMIT) >= 8 {
+		return GITCOMMIT[:8]
+	}
+	return GITCOMMIT
+}
+
 func LoadversionCmd(root *cobra.Command) {
 	root.AddCommand(&cobra.Command{
 		Use:   "version",

@@ -9,6 +9,8 @@ import (
 
 	"github.com/spf13/viper"
 	"google.golang.org/grpc/metadata"
+
+	"github.com/geekymedic/neon/bff/types"
 )
 
 /*
@@ -27,6 +29,8 @@ _time	调用时间戳	Y	调用时候客户端当前时间戳
 _stack 服务各系统间的调用栈
 _chain 服务调用链条
 _storeId 店铺Id N 店铺的id
+_path api URL
+_struct_err 参数检查结果
 */
 
 type Session struct {
@@ -158,6 +162,10 @@ func NewSessionFromGinCtx(ctx *gin.Context) *Session {
 	var (
 		s = &Session{}
 	)
+	session, ok := ctx.Get(types.NeonSession)
+	if ok {
+		return session.(*Session)
+	}
 
 	for name, ref := range s.Keys() {
 		*ref = ctx.Query(name)
@@ -171,6 +179,10 @@ func NewSessionFromGinCtx(ctx *gin.Context) *Session {
 		s.Path = ctx.Request.URL.Path
 	}
 	return s
+}
+
+func SetSession(session *Session, ctx *gin.Context) {
+	ctx.Set(types.NeonSession, session)
 }
 
 func getSystemName() string {

@@ -154,7 +154,7 @@ func (stackErr *StackError) Error() string {
 	chainFrame := stackErr.errChain.Error()
 	// Only has top chain and top chain is std error
 	if _, ok := stackErr.errChain.(*errChain); !ok {
-		return fmt.Sprintf("err: %s\nstacktrace:\n%s", chainFrame, frame)
+		return fmt.Sprintf("%s\nstacktrace:\n%s", chainFrame, frame)
 	}
 	return fmt.Sprintf("%s\nstacktrace:\n%s", chainFrame, frame)
 }
