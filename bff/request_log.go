@@ -107,9 +107,9 @@ func RequestTraceMiddle(failOut map[string]interface{}, ignore ...string) gin.Ha
 				if code == 0 {
 					log.Info("http trace log")
 				} else if code == CodeServerError {
-					log.With("inbound", string(body)).Warn("http trace log")
-				} else if code == CodeRequestBodyError {
-					log.With("inbound", string(body)).Warn("http trace log")
+					log.Error("http trace log")
+				} else {
+					log.Warn("http trace log")
 				}
 			}
 		}()
