@@ -36,6 +36,7 @@ func RequestTraceMiddle(failOut map[string]interface{}, ignore ...string) gin.Ha
 				var buf [1024]byte
 				runtime.Stack(buf[:], true)
 				log.With("stack", err, "full-stack", fmt.Sprintf("%s", buf)).Error("panic stack")
+				c.Abort()
 				return
 			}
 			session := neon.NewSessionFromGinCtx(c)
