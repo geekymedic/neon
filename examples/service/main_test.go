@@ -37,8 +37,8 @@ func TestPingCallChain(t *testing.T) {
 	go bffServer(t, ctx)
 	time.Sleep(time.Second)
 	callhttpOk(t, ctx)
-	time.Sleep(time.Second)
-	callhttpFail(t, ctx)
+	// time.Sleep(time.Second)
+	// callhttpFail(t, ctx)
 	cancel()
 
 }
@@ -64,9 +64,8 @@ func bffServer(t *testing.T, ctx context.Context) {
 			state.Error(bff.CodeRequestBodyError, err)
 			return
 		}
-		t.Log("trace", state.Trace, "version", state.Version)
+		t.Log("trace", state.Trace, "version", state.Version, "id", id.Id)
 		callRpc(t, state)
-		panic("测试")
 		state.Success("ok")
 	}))
 	err = http.Serve(l, bff.MockEngine())

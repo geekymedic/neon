@@ -7,6 +7,8 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/gin-gonic/gin/binding"
+
 	"github.com/geekymedic/neon/bff/types"
 
 	"github.com/gin-gonic/gin"
@@ -96,7 +98,7 @@ func (m *State) ShouldBindJSON(v interface{}) error {
 	if m.Gin.Writer.Written() {
 		return nil
 	}
-	if err := m.Gin.ShouldBindJSON(v); err != nil {
+	if err := m.Gin.ShouldBindBodyWith(v, binding.JSON); err != nil {
 		m.Session.StructError = err.Error()
 		m.Gin.Set(types.NeonSession, m.Session)
 		return errors.By(err)
@@ -122,6 +124,7 @@ func (m *State) httpJson(code int, v interface{}) {
 	if err != nil {
 		m.Gin.Set(types.ResponseErr, err)
 	}
+	m.Gin.Set(types.ResponseBody, buf.String())
 }
 
 func (m *State) httpJsonMessage(code int, message string, v interface{}) {
@@ -142,4 +145,5 @@ func (m *State) httpJsonMessage(code int, message string, v interface{}) {
 	if err != nil {
 		m.Gin.Set(types.ResponseErr, err)
 	}
+	m.Gin.Set(types.ResponseBody, buf.String())
 }

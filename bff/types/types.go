@@ -1,9 +1,10 @@
 package types
 
 const (
-	StateName          = "neon.bff.State"
-	ResponseStatusCode = "neon.bff.response.statuscode"
+	StateName          = "neon.bff.state"
+	ResponseStatusCode = "neon.bff.response.status_code"
 	ResponseErr        = "neon.bff.response.msg"
+	ResponseBody       = "neon.bff.response.body"
 	NeonSession        = "neon.bff.session"
 )
 

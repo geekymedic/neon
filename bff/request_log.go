@@ -78,17 +78,14 @@ func RequestTraceMiddle(failOut map[string]interface{}, ignore ...string) gin.Ha
 						c.Set(gin.BodyBytesKey, body)
 					}
 				}
-				bodySize := len(body)
-				if bodySize > 1<<10 {
-					bodySize = 1 << 10
-				}
 
 				contentSize := c.Request.Header.Get("Content-Length")
 				sessionLog := session.ShortLog()
-				log = log.With("pro_name", version.PRONAME, "gitcommit", version.ShortGitCommit(),
+				log = log.With("pro_name", version.PRONAME, "git_commit", version.ShortGitCommit(),
 					"method", param.Method,
 					"status", param.StatusCode,
-					"req_size", contentSize,
+					"content_length", contentSize,
+					"real_req_size", fmt.Sprintf("%v", len(body)),
 					"resp_size", param.BodySize,
 					"latency", fmt.Sprintf("%v", param.Latency),
 					"client_ip", param.ClientIP,
@@ -101,6 +98,11 @@ func RequestTraceMiddle(failOut map[string]interface{}, ignore ...string) gin.Ha
 				msg, ok := c.Get(types.ResponseErr)
 				if ok {
 					log = log.With("trace_msg", msg)
+				}
+				log = log.With("inbound", string(body))
+				outbound, ok := c.Get(types.ResponseBody)
+				if ok {
+					log = log.With("outbound", outbound)
 				}
 				if code == 0 {
 					log.Info("http trace log")
