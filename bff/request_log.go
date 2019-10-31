@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"runtime"
+	"runtime/debug"
 	"time"
 
 	"github.com/geekymedic/neon"
@@ -33,8 +33,7 @@ func RequestTraceMiddle(failOut map[string]interface{}, ignore ...string) gin.Ha
 					c.JSON(http.StatusOK, failOut)
 					c.Set(types.ResponseStatusCode, failOut["Code"])
 				}
-				var buf [1024]byte
-				runtime.Stack(buf[:], true)
+				var buf = debug.Stack()
 				log.With("stack", err, "full-stack", fmt.Sprintf("%s", buf)).Error("panic stack")
 				c.Abort()
 				return
