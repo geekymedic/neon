@@ -1,3 +1,5 @@
 package db
 
-type IterRowsFn = func() error
+func IterRowsFn(fn func() error) error {
+	return fn()
+}
