@@ -1,6 +1,9 @@
 package config
 
 import (
+	"fmt"
+	"strings"
+
 	"github.com/spf13/viper"
 
 	"github.com/geekymedic/neon/errors"
@@ -21,24 +24,22 @@ func init() {
 }
 
 func Load(path *string) error {
-	if env := viper.Get("NEON_MODE"); env != nil {
-		switch env {
-		case NeonModeLt:
-			if err := LoadRemote(viper.GetString("CONFIG_PROVIDER"), viper.GetString("CONFIG_ENDPOINT"), "/config/lt/app.yml"); err != nil {
-				return errors.By(err)
-			}
-		case NeonModeDev:
-			if err := LoadRemote(viper.GetString("CONFIG_PROVIDER"), viper.GetString("CONFIG_ENDPOINT"), "/config/dev/app.yml"); err != nil {
-				return errors.By(err)
-			}
-		case NeonModeTest:
-			if err := LoadRemote(viper.GetString("CONFIG_PROVIDER"), viper.GetString("CONFIG_ENDPOINT"), "/config/test/app.yml"); err != nil {
-				return errors.By(err)
-			}
-		case NeonModeProduct:
-			if err := LoadRemote(viper.GetString("CONFIG_PROVIDER"), viper.GetString("CONFIG_ENDPOINT"), "/config/prd/app.yml"); err != nil {
-				return errors.By(err)
-			}
+	if env := viper.GetString("NEON_MODE"); env != "" {
+		env = strings.ToUpper(env)
+		if env != NeonModeLt && env != NeonModeDev && env != NeonModeTest && env != NeonModeProduct {
+			return errors.Format("NEON_MODE env should be set %s OR %s OR %s OR %s", NeonModeLt, NeonModeDev, NeonModeTest, NeonModeProduct)
+		}
+		var provider = viper.GetString("CONFIG_PROVIDER")
+		if provider == "" {
+			provider = "etcd"
+		}
+		var endpoint = viper.GetString("CONFIG_ENDPOINT")
+		var path = viper.GetString("CONFIG_PATH")
+		if path == "" {
+			path = fmt.Sprintf("/config/%s/app.yml", strings.ToLower(env))
+		}
+		if err := LoadRemote(provider, endpoint, path); err != nil {
+			return errors.By(err)
 		}
 
 		return nil
