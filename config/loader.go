@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
 
 	"github.com/geekymedic/neon/errors"
@@ -58,8 +59,8 @@ func Load(path *string) error {
 }
 
 func LoadRemote(provider, endpoint, path string) error {
-	err := viper.AddRemoteProvider(provider, endpoint, path)
 	viper.SetConfigType("yml")
+	err := viper.AddRemoteProvider(provider, endpoint, path)
 	if err != nil {
 		return errors.By(err)
 	}
@@ -68,5 +69,9 @@ func LoadRemote(provider, endpoint, path string) error {
 	if err != nil {
 		return errors.By(err)
 	}
+	viper.WatchConfig()
+	viper.OnConfigChange(func(in fsnotify.Event) {
+		fmt.Println(in.Name, in.Op)
+	})
 	return nil
 }
