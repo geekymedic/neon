@@ -32,6 +32,7 @@ func (m *State) ContextWithTimeout(timeout time.Duration) context.Context {
 	return ctx
 }
 
+// GrpcClientCtx return a new grpc client context
 func (m *State) GrpcClientCtx() context.Context {
 	return metadata.NewOutgoingContext(context.Background(), metadata.New(m.Session.KeysValues()))
 }
