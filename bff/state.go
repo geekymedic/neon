@@ -94,6 +94,10 @@ func (m *State) GrpcClientCtx() context.Context {
 	return metadata.NewOutgoingContext(context.Background(), metadata.New(m.Session.KeysValues()))
 }
 
+func (m *State) AsyncGrpcCtx() context.Context {
+	return metadata.NewOutgoingContext(context.Background(), metadata.New(m.Session.KeysValues()))
+}
+
 func (m *State) ShouldBindJSON(v interface{}) error {
 	if m.Gin.Writer.Written() {
 		return nil
