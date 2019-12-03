@@ -2,13 +2,15 @@ package service
 
 import (
 	"context"
-	"github.com/geekymedic/neon/logger/extend"
 	"time"
+
+	"github.com/geekymedic/neon/logger/extend"
 
 	"github.com/geekymedic/neon/logger"
 
-	"github.com/geekymedic/neon"
 	"google.golang.org/grpc/metadata"
+
+	"github.com/geekymedic/neon"
 )
 
 var (
@@ -25,9 +27,13 @@ func (m *State) Context() context.Context {
 	return m.ctx
 }
 
-func(m *State) ContextWithTimeout(timeout time.Duration) context.Context {
+func (m *State) ContextWithTimeout(timeout time.Duration) context.Context {
 	ctx, _ := context.WithTimeout(m.ctx, timeout)
 	return ctx
+}
+
+func (m *State) GrpcClientCtx() context.Context {
+	return metadata.NewOutgoingContext(context.Background(), metadata.New(m.Session.KeysValues()))
 }
 
 func NewState(ctx context.Context) *State {

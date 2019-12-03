@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ef3ca26-f257-4379-848c-dd0e7314ebc0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/config/loader.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/loader.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/loader_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/loader_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/state.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/state.go" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,8 +25,14 @@
     <option name="indexEntireGoPath" value="false" />
   </component>
   <component name="ProjectId" id="1Oqux274LK2kV085k1DoPcjbBBK" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
@@ -45,19 +50,7 @@
       <recent name="$PROJECT_DIR$/examples/bff" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Go Test.TestLoadRemote/it_is_ok in github.com/geekymedic/neon/config">
+  <component name="RunManager" selected="Go Build.go build github.com/geekymedic/neon/examples/bff">
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go test">
       <module name="neon" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -100,7 +93,7 @@
       <pattern value="^TestEngine$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestLoadRemote in github.com/geekymedic/neon/config" type="GoTestRunConfiguration" factoryName="Go $NEON_MODE$" temporary="true" nameIsGenerated="true">
+    <configuration name="TestLoadRemote in github.com/geekymedic/neon/config" type="GoTestRunConfiguration" factoryName="Go test" temporary="true" nameIsGenerated="true">
       <module name="neon" />
       <working_directory value="$PROJECT_DIR$/config" />
       <framework value="gotest" />
@@ -111,7 +104,7 @@
       <pattern value="^TestLoadRemote$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestLoadRemote/it_is_fail in github.com/geekymedic/neon/config" type="GoTestRunConfiguration" factoryName="Go $NEON_MODE$" temporary="true" nameIsGenerated="true">
+    <configuration name="TestLoadRemote/it_is_fail in github.com/geekymedic/neon/config" type="GoTestRunConfiguration" factoryName="Go test" temporary="true" nameIsGenerated="true">
       <module name="neon" />
       <working_directory value="$PROJECT_DIR$/config" />
       <framework value="gotest" />
@@ -122,7 +115,7 @@
       <pattern value="^TestLoadRemote$/^it_is_fail$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestLoadRemote/it_is_ok in github.com/geekymedic/neon/config" type="GoTestRunConfiguration" factoryName="Go $NEON_MODE$" temporary="true" nameIsGenerated="true">
+    <configuration name="TestLoadRemote/it_is_ok in github.com/geekymedic/neon/config" type="GoTestRunConfiguration" factoryName="Go test" temporary="true" nameIsGenerated="true">
       <module name="neon" />
       <working_directory value="$PROJECT_DIR$/config" />
       <framework value="gotest" />
@@ -135,12 +128,21 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Test.TestLoadRemote/it_is_ok in github.com/geekymedic/neon/config" />
-        <item itemvalue="Go Test.TestLoadRemote/it_is_fail in github.com/geekymedic/neon/config" />
-        <item itemvalue="Go Test.TestLoadRemote in github.com/geekymedic/neon/config" />
         <item itemvalue="Go Build.go build github.com/geekymedic/neon/examples/bff" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
