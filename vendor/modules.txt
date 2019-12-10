@@ -1,3 +1,5 @@
+# github.com/beanstalkd/go-beanstalk v0.0.0-20190515041346-390b03b3064a => github.com/geekymedic/go-beanstalk v0.0.0-20191210081744-8aff47a77476
+github.com/beanstalkd/go-beanstalk
 # github.com/beorn7/perks v1.0.1
 github.com/beorn7/perks/quantile
 # github.com/davecgh/go-spew v1.1.1
@@ -95,6 +97,14 @@ github.com/prometheus/common/internal/bitbucket.org/ww/goautoneg
 # github.com/prometheus/procfs v0.0.3
 github.com/prometheus/procfs
 github.com/prometheus/procfs/internal/fs
+# github.com/shamaton/msgpack v1.1.1
+github.com/shamaton/msgpack
+github.com/shamaton/msgpack/ext
+github.com/shamaton/msgpack/internal/decoding
+github.com/shamaton/msgpack/internal/encoding
+github.com/shamaton/msgpack/def
+github.com/shamaton/msgpack/internal/common
+github.com/shamaton/msgpack/time
 # github.com/sirupsen/logrus v1.4.2
 github.com/sirupsen/logrus
 # github.com/spf13/afero v1.1.2
@@ -115,6 +125,8 @@ github.com/stretchr/testify/assert
 github.com/stretchr/testify/require
 # github.com/ugorji/go/codec v1.1.7
 github.com/ugorji/go/codec
+# github.com/zentures/cityhash v0.0.0-20131128155616-cdd6a94144ab
+github.com/zentures/cityhash
 # golang.org/x/net v0.0.0-20190613194153-d28f0bde5980
 golang.org/x/net/trace
 golang.org/x/net/context
