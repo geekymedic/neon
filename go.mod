@@ -3,6 +3,7 @@ module github.com/geekymedic/neon
 go 1.12
 
 require (
+	github.com/beanstalkd/go-beanstalk v0.0.0-20190515041346-390b03b3064a
 	github.com/fortytw2/leaktest v1.3.0 // indirect
 	github.com/gin-gonic/gin v1.4.0
 	github.com/go-playground/locales v0.12.1 // indirect
@@ -19,13 +20,17 @@ require (
 	github.com/onsi/ginkgo v1.8.0 // indirect
 	github.com/onsi/gomega v1.5.0 // indirect
 	github.com/prometheus/client_golang v1.1.0
+	github.com/shamaton/msgpack v1.1.1
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/cobra v0.0.5
 	github.com/spf13/viper v1.3.2
 	github.com/stretchr/testify v1.4.0
 	github.com/ugorji/go v1.1.7 // indirect
+	github.com/zentures/cityhash v0.0.0-20131128155616-cdd6a94144ab
 	google.golang.org/grpc v1.22.1
 	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127 // indirect
 	gopkg.in/go-playground/validator.v8 v8.18.2
 	gopkg.in/go-playground/validator.v9 v9.29.1
 )
+
+replace github.com/beanstalkd/go-beanstalk => github.com/geekymedic/go-beanstalk v0.0.0-20191210081744-8aff47a77476
