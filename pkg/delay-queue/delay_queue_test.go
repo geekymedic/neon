@@ -11,7 +11,7 @@ import (
 )
 
 func TestNewBeanstalkDelayQueue(t *testing.T) {
-	delayQueue, err := NewBeanstalkDelayQueue("127.0.0.1:11300")
+	delayQueue, err := NewBeanstalkDelayQueue("beanstalkd.gmtshenzhen.cn:80")
 	require.Nil(t, err)
 	defer delayQueue.Close()
 	delayQueue.Put("test", 1, time.Second*1, time.Second*2, Task{
