@@ -1,6 +1,8 @@
 package delay_queue
 
 import (
+	"fmt"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -12,19 +14,19 @@ import (
 	"github.com/geekymedic/neon/logger"
 )
 
-type TaskHandle = func(task Task)
+type TaskHandle = func(taskId string, task Task)
 
 type DelayQueue interface {
 	Watch(handle TaskHandle, topic ...string)
 	Put(topic string, priority uint32, delay, ttr time.Duration, task Task) error
-	Delete(topic string, id uint64) error
-	Update(topic string, id uint64, priority uint32, delay time.Duration) error
+	Delete(topic string, taskId string) error
+	Update(topic string, taskId string, priority uint32, delay time.Duration) error
 	Close() error
 }
 
 type Task struct {
-	Id   uint64
-	Body []byte
+	SequenceId string
+	Body       []byte
 }
 
 type Conn struct {
@@ -84,7 +86,7 @@ func (delayQueue *BeanstalkDelayQueue) Watch(handle TaskHandle, topic ...string)
 					log.With("id", id).Error(err)
 					continue
 				}
-				handle(task)
+				handle(fmt.Sprintf("%d", id), task)
 			}
 		}()
 	})
@@ -103,25 +105,33 @@ func (delayQueue *BeanstalkDelayQueue) Put(topic string, priority uint32, delay,
 	return err
 }
 
-func (delayQueue *BeanstalkDelayQueue) Delete(topic string, id uint64) error {
-	err := delayQueue.conn.Use(&beanstalk.Tube{Name: topic})
+func (delayQueue *BeanstalkDelayQueue) Delete(topic string, id string) error {
+	_id, err := strconv.ParseUint(id, 10, 64)
+	if err != nil {
+		return errors.By(err)
+	}
+	err = delayQueue.conn.Use(&beanstalk.Tube{Name: topic})
 	if err != nil {
 		return err
 	}
-	return delayQueue.conn.Delete(id)
+	return delayQueue.conn.Delete(_id)
 }
 
-func (delayQueue *BeanstalkDelayQueue) Update(topic string, id uint64, priority uint32, delay time.Duration) error {
-	err := delayQueue.conn.Use(&beanstalk.Tube{Name: topic})
+func (delayQueue *BeanstalkDelayQueue) Update(topic string, id string, priority uint32, delay time.Duration) error {
+	_id, err := strconv.ParseUint(id, 10, 64)
+	if err != nil {
+		return errors.By(err)
+	}
+	err = delayQueue.conn.Use(&beanstalk.Tube{Name: topic})
 	if err != nil {
 		return err
 	}
-	return delayQueue.conn.Release(id, priority, delay)
+	return delayQueue.conn.Release(_id, priority, delay)
 }
 
-func(delayQueue *BeanstalkDelayQueue) Close() error {
+func (delayQueue *BeanstalkDelayQueue) Close() error {
 	var err error
-	delayQueue.once.Do(func(){
+	delayQueue.once.Do(func() {
 		err = delayQueue.conn.Close()
 		if err != nil {
 			return
