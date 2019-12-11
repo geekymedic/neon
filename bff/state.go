@@ -74,7 +74,7 @@ func (m *State) Error(code int, err error) {
 func (m *State) Json(code int, v interface{}, err ...error) {
 	m.Gin.Set(types.ResponseStatusCode, code)
 	if len(err) != 0 {
-		m.Gin.Set(types.ResponseErr, err)
+		m.Gin.Set(types.ResponseErr, err[0])
 	}
 	m.httpJson(code, v)
 }
