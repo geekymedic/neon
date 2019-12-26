@@ -1,0 +1,7 @@
+Name: "login-system-services-login"
+
+OSS:
+  PassWord: "8127300"
+
+MQ:
+  Address: "localhost:8080"

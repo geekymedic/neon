@@ -1,34 +1,64 @@
 package config
 
 import (
+	"fmt"
 	"os"
 	"testing"
 	"time"
 
 	"github.com/spf13/viper"
-	_ "github.com/spf13/viper/remote"
 	"github.com/stretchr/testify/require"
 )
 
-func TestLoadRemote(t *testing.T) {
+func TestLoader(t *testing.T) {
 	viper.BindEnv("NEON_MODE")
 	viper.BindEnv("CONFIG_PROVIDER")
 	viper.BindEnv("CONFIG_ENDPOINT")
 	viper.BindEnv("CONFIG_PATH")
+	os.Setenv(NeonMode, NeonModeDev)
+	os.Setenv(NeonConfigProvider, "etcd")
+	os.Setenv(NeonConfigEndpoint, "http://127.0.0.1:2379")
+	os.Setenv(NeonConfigPath, "/config")
+	// os.Setenv(NeonConfigSecret, "Hello@Goods")
+	var path = "."
+	require.Nil(t, Load(&path))
 
-	t.Run("it is ok", func(t *testing.T) {
-		os.Setenv("NEON_MODE", "DEV")
-		os.Setenv("CONFIG_ENDPOINT", "http://192.168.0.202:12379")
-		err := Load(nil)
-		require.Nil(t, err)
-		viper.Get("servers.etcd-system-bff-demo")
-		t.Log(viper.AllKeys())
-		time.Sleep(time.Minute)
+	t.Run("etcd", func(t *testing.T) {
+		for {
+			err := viper.GetViper().WatchRemoteConfigOnChannel()
+			for key, value := range viper.AllSettings() {
+				fmt.Println(key, value)
+			}
+			require.Nil(t, err)
+			time.Sleep(time.Second * 3)
+			fmt.Println("--------------------------------")
+		}
 	})
 
-	// t.Run("it is fail", func(t *testing.T) {
-	// 	os.Setenv("NEON_MODE", "XXXX")
-	// 	err := Load(nil)
-	// 	require.NotNil(t, err)
+	// t.Run("apollo", func(t *testing.T) {
+	// 	viper.SetConfigFile("yml")
+	// 	viper.SupportedRemoteProviders = []string{"etcd", "apollo"}
+	// 	var args = []struct {
+	// 		provider string
+	// 		endpoint string
+	// 		path     string
+	// 		secret   string
+	// 	}{
+	// 		{
+	// 			provider: "apollo",
+	// 			endpoint: "localhost:8080",
+	// 			path:     "DEV.2.yml",
+	// 			secret:   "SampleApp",
+	// 		},
+	// 	}
+	// 	for _, arg := range args {
+	// 		err := viper.AddSecureRemoteProvider(arg.provider, arg.endpoint, arg.path, arg.secret)
+	// 		require.Nil(t, err)
+	// 	}
+	// 	err := viper.ReadRemoteConfig()
+	// 	require.Nil(t, err)
+	// 	t.Log(viper.AllKeys())
+	// 	err = viper.GetViper().WatchRemoteConfigOnChannel()
+	// 	require.Nil(t, err)
 	// })
 }

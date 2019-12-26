@@ -10,7 +10,7 @@ import (
 	"time"
 
 	"github.com/spf13/viper"
-	"go.etcd.io/etcd/clientv3"
+	"gopkg.in/yaml.v2"
 
 	"github.com/geekymedic/neon/errors"
 )
@@ -29,6 +29,7 @@ type Backend interface {
 type remoteConfigProvider struct {
 	onlyOnce *sync.Once
 	etcd     Backend
+	apollo   Backend
 }
 
 func (rc *remoteConfigProvider) initBackend(rp viper.RemoteProvider) {
@@ -48,20 +49,35 @@ func (rc *remoteConfigProvider) initBackend(rp viper.RemoteProvider) {
 			if err != nil {
 				panic(err)
 			}
-			fmt.Println("init etcd provider")
+			fmt.Println("Init etcd provider successfully")
 		})
 	}
-
-	if rp.Provider() == "abolo" {
-
+	if rp.Provider() == "apollo" {
+		panic("Unsupported the provider")
+		rc.onlyOnce.Do(func() {
+			var err error
+			rc.apollo, err = newApolloBackend(rp.SecretKeyring(), rp.Endpoint(), rp.Path())
+			if err != nil {
+				panic(err)
+			}
+			fmt.Println("Init apollo provider successfully")
+		})
 	}
 }
 
+// patch for local config
 func (rc *remoteConfigProvider) Get(rp viper.RemoteProvider) (io.Reader, error) {
 	rc.initBackend(rp)
-	buf, err := rc.etcd.Get(context.Background(), rp.Path())
+	buf, err := rc.backend(rp.Provider()).Get(context.Background(), rp.Path())
 	if err != nil {
 		return nil, errors.Wrap(err)
+	}
+	if keyValues := LocalViper.AllSettings(); len(keyValues) > 0 {
+		patch, err := yaml.Marshal(LocalViper.AllSettings())
+		if err != nil {
+			return nil, errors.Wrap(err)
+		}
+		buf = append(buf, patch...)
 	}
 
 	return bytes.NewReader(buf), nil
@@ -69,7 +85,7 @@ func (rc *remoteConfigProvider) Get(rp viper.RemoteProvider) (io.Reader, error) 
 
 func (rc *remoteConfigProvider) Watch(rp viper.RemoteProvider) (io.Reader, error) {
 	rc.initBackend(rp)
-	buf, err := rc.etcd.Get(context.Background(), rp.Path())
+	buf, err := rc.backend(rp.Provider()).Get(context.Background(), rp.Path())
 	if err != nil {
 		return nil, errors.Wrap(err)
 	}
@@ -82,11 +98,7 @@ func (rc *remoteConfigProvider) WatchChannel(rp viper.RemoteProvider) (<-chan *v
 	quitwc := make(chan bool)
 	viperResponseCh := make(chan *viper.RemoteResponse)
 
-	var backend Backend
-
-	if rp.Provider() == "etcd" {
-		backend = rc.etcd
-	}
+	var backend = rc.backend(rp.Provider())
 
 	go func(vr <-chan *viper.RemoteResponse, quitwc <-chan bool) {
 		defer backend.Close()
@@ -107,72 +119,14 @@ func (rc *remoteConfigProvider) WatchChannel(rp viper.RemoteProvider) (<-chan *v
 	return viperResponseCh, quitwc
 }
 
-type etcdBackend struct {
-	ctx        context.Context
-	cancel     context.CancelFunc
-	cli        *clientv3.Client
-	once       *sync.Once
-	watchEvent chan Event
-}
-
-func newEtcdBackend(userName, password string, endpoints []string, dialTimeout time.Duration) (*etcdBackend, error) {
-	ctx, cancelFn := context.WithCancel(context.Background())
-	cli, err := clientv3.New(clientv3.Config{
-		Username:    userName,
-		Password:    password,
-		Endpoints:   endpoints,
-		DialTimeout: dialTimeout,
-	})
-
-	if err != nil {
-		return nil, err
+func (rc *remoteConfigProvider) backend(provider string) Backend {
+	if provider == "etcd" {
+		return rc.etcd
 	}
-	backend := &etcdBackend{
-		ctx:        ctx,
-		cancel:     cancelFn,
-		cli:        cli,
-		watchEvent: make(chan Event),
-		once:       &sync.Once{},
+	if provider == "apollo" {
+		return rc.apollo
 	}
-	return backend, nil
-}
-
-func (backend *etcdBackend) Get(ctx context.Context, path string) ([]byte, error) {
-	resp, err := backend.cli.Get(ctx, path, clientv3.WithPrefix())
-	if err != nil {
-		return nil, err
-	}
-	var buf = bytes.NewBuffer(nil)
-	for _, ev := range resp.Kvs {
-		buf.Write(ev.Value)
-		buf.WriteString("\n")
-	}
-	return buf.Bytes(), nil
-}
-
-func (backend *etcdBackend) Watch(ctx context.Context, path string) <-chan Event {
-	backend.once.Do(func() {
-		go func() {
-			watchChan := backend.cli.Watch(ctx, path, clientv3.WithPrefix())
-			for {
-				select {
-				case <-backend.ctx.Done():
-					return
-				case ev := <-watchChan:
-					fmt.Println(ev.CompactRevision)
-					backend.watchEvent <- Event{
-						EV: ev,
-					}
-				}
-			}
-		}()
-	})
-	return backend.watchEvent
-}
-
-func (backend *etcdBackend) Close() error {
-	backend.cancel()
-	return backend.cli.Close()
+	return nil
 }
 
 func init() {

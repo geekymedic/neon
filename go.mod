@@ -21,12 +21,17 @@ require (
 	github.com/olivere/elastic v6.2.21+incompatible
 	github.com/onsi/ginkgo v1.8.0 // indirect
 	github.com/onsi/gomega v1.5.0 // indirect
+	github.com/philchia/agollo/v3 v3.0.2 // indirect
 	github.com/prometheus/client_golang v1.1.0
+	github.com/shima-park/agollo v1.1.7
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/cobra v0.0.3
 	github.com/spf13/viper v1.5.0
+	github.com/streadway/handy v0.0.0-20190108123426-d5acb3125c2a // indirect
 	github.com/stretchr/testify v1.4.0
 	github.com/ugorji/go v1.1.7 // indirect
+	github.com/zouyx/agollo/v2 v2.2.6 // indirect
+	go.etcd.io/etcd v3.3.18+incompatible
 	golang.org/x/crypto v0.0.0-20191119213627-4f8c1d86b1ba // indirect
 	golang.org/x/net v0.0.0-20191119073136-fc4aabc6c914 // indirect
 	golang.org/x/sync v0.0.0-20190911185100-cd5d95a43a6e // indirect
