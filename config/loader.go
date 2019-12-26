@@ -78,7 +78,6 @@ func LoadRemote(localPath string) error {
 		}
 		LocalViper.WatchConfig()
 	}
-
 	viper.SetConfigType("yml")
 	logger.With(NeonConfigProvider, viper.Get(NeonConfigProvider),
 		NeonConfigEndpoint, viper.Get(NeonConfigEndpoint),
@@ -89,6 +88,9 @@ func LoadRemote(localPath string) error {
 		viper.GetString(NeonConfigPath),
 		viper.GetString(NeonConfigSecret))
 	if err != nil {
+		return errors.Wrap(err)
+	}
+	if err = viper.MergeConfigMap(LocalViper.AllSettings()); err != nil {
 		return errors.Wrap(err)
 	}
 	if err = viper.ReadRemoteConfig(); err != nil {

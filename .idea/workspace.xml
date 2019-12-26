@@ -2,45 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ef3ca26-f257-4379-848c-dd0e7314ebc0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/google-java-format.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/neon.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/etcd.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/etcd.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/loader.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/loader.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/loader_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/loader_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/config/loader.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/config/loader_test.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/config/manager.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/config/public.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/config/remote.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/remote.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/config/system.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/system.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins.go" beforeDir="false" afterPath="$PROJECT_DIR$/plugins.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/.travis.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/keysparsing.go" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/keysparsing.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/lexer.go" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/lexer.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/marshal.go" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/marshal.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/parser.go" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/parser.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/test.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/toml.go" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/toml.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/tomltree_write.go" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/tomltree_write.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/spf13/viper/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/spf13/viper/.travis.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/spf13/viper/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/spf13/viper/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/spf13/viper/flags.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/spf13/viper/go.mod" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/spf13/viper/go.sum" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/spf13/viper/remote/remote.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/spf13/viper/util.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/spf13/viper/viper.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/modules.txt" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/modules.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +54,7 @@
       <recent name="$PROJECT_DIR$/bff" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.TestLoader/etcd in github.com/geekymedic/neon/config">
+  <component name="RunManager" selected="Go Test.TestLoader in github.com/geekymedic/neon/config">
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go test">
       <module name="neon" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -98,6 +64,17 @@
       <package value="github.com/geekymedic/neon" />
       <directory value="$PROJECT_DIR$/" />
       <filePath value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestLoader in github.com/geekymedic/neon/config" type="GoTestRunConfiguration" factoryName="Go $NEON_MODE$" temporary="true" nameIsGenerated="true">
+      <module name="neon" />
+      <working_directory value="$PROJECT_DIR$/config" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/geekymedic/neon/config" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestLoader$" />
       <method v="2" />
     </configuration>
     <configuration name="TestLoader in github.com/geekymedic/neon/plugin/config" type="GoTestRunConfiguration" factoryName="Go $NEON_MODE$" temporary="true" nameIsGenerated="true">
@@ -144,24 +121,13 @@
       <pattern value="^TestLoader$/^etcd$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestLoader/etcd in github.com/geekymedic/neon/plugin/config" type="GoTestRunConfiguration" factoryName="Go $NEON_MODE$" temporary="true" nameIsGenerated="true">
-      <module name="neon" />
-      <working_directory value="$PROJECT_DIR$/plugin/config" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="github.com/geekymedic/neon/plugin/config" />
-      <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestLoader$/^etcd$" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestLoader in github.com/geekymedic/neon/config" />
         <item itemvalue="Go Test.TestLoader/etcd in github.com/geekymedic/neon/config" />
         <item itemvalue="Go Test.TestLoader/apollo in github.com/geekymedic/neon/config" />
         <item itemvalue="Go Test.TestLoader/apollo in github.com/geekymedic/neon/plugin/config" />
         <item itemvalue="Go Test.TestLoader in github.com/geekymedic/neon/plugin/config" />
-        <item itemvalue="Go Test.TestLoader/etcd in github.com/geekymedic/neon/plugin/config" />
       </list>
     </recent_temporary>
   </component>
@@ -233,30 +199,30 @@
       <screen x="-1920" y="164" width="1920" height="996" />
     </state>
     <state x="-1157" y="424" key="FileChooserDialogImpl/-1920.164.1920.996/1680.-170.1080.1897/0.23.1680.1027@-1920.164.1920.996" timestamp="1577346612471" />
-    <state width="1878" height="448" key="GridCell.Tab.0.bottom" timestamp="1577353383016">
+    <state width="1878" height="224" key="GridCell.Tab.0.bottom" timestamp="1577354795807">
       <screen x="-1920" y="164" width="1920" height="996" />
     </state>
     <state width="1878" height="284" key="GridCell.Tab.0.bottom/-1920.164.1920.1057/1680.-170.1080.1897/0.23.1680.973@-1920.164.1920.1057" timestamp="1577173737151" />
     <state width="1878" height="275" key="GridCell.Tab.0.bottom/-1920.164.1920.994/1680.-170.1080.1897/0.23.1680.1027@-1920.164.1920.994" timestamp="1577180137375" />
-    <state width="1878" height="448" key="GridCell.Tab.0.bottom/-1920.164.1920.996/1680.-170.1080.1897/0.23.1680.1027@-1920.164.1920.996" timestamp="1577353383016" />
-    <state width="1878" height="448" key="GridCell.Tab.0.center" timestamp="1577353383015">
+    <state width="1878" height="224" key="GridCell.Tab.0.bottom/-1920.164.1920.996/1680.-170.1080.1897/0.23.1680.1027@-1920.164.1920.996" timestamp="1577354795807" />
+    <state width="1878" height="224" key="GridCell.Tab.0.center" timestamp="1577354795806">
       <screen x="-1920" y="164" width="1920" height="996" />
     </state>
     <state width="1878" height="284" key="GridCell.Tab.0.center/-1920.164.1920.1057/1680.-170.1080.1897/0.23.1680.973@-1920.164.1920.1057" timestamp="1577173737150" />
     <state width="1878" height="275" key="GridCell.Tab.0.center/-1920.164.1920.994/1680.-170.1080.1897/0.23.1680.1027@-1920.164.1920.994" timestamp="1577180137374" />
-    <state width="1878" height="448" key="GridCell.Tab.0.center/-1920.164.1920.996/1680.-170.1080.1897/0.23.1680.1027@-1920.164.1920.996" timestamp="1577353383015" />
-    <state width="1878" height="448" key="GridCell.Tab.0.left" timestamp="1577353383015">
+    <state width="1878" height="224" key="GridCell.Tab.0.center/-1920.164.1920.996/1680.-170.1080.1897/0.23.1680.1027@-1920.164.1920.996" timestamp="1577354795806" />
+    <state width="1878" height="224" key="GridCell.Tab.0.left" timestamp="1577354795805">
       <screen x="-1920" y="164" width="1920" height="996" />
     </state>
     <state width="1878" height="284" key="GridCell.Tab.0.left/-1920.164.1920.1057/1680.-170.1080.1897/0.23.1680.973@-1920.164.1920.1057" timestamp="1577173737149" />
     <state width="1878" height="275" key="GridCell.Tab.0.left/-1920.164.1920.994/1680.-170.1080.1897/0.23.1680.1027@-1920.164.1920.994" timestamp="1577180137374" />
-    <state width="1878" height="448" key="GridCell.Tab.0.left/-1920.164.1920.996/1680.-170.1080.1897/0.23.1680.1027@-1920.164.1920.996" timestamp="1577353383015" />
-    <state width="1878" height="448" key="GridCell.Tab.0.right" timestamp="1577353383015">
+    <state width="1878" height="224" key="GridCell.Tab.0.left/-1920.164.1920.996/1680.-170.1080.1897/0.23.1680.1027@-1920.164.1920.996" timestamp="1577354795805" />
+    <state width="1878" height="224" key="GridCell.Tab.0.right" timestamp="1577354795806">
       <screen x="-1920" y="164" width="1920" height="996" />
     </state>
     <state width="1878" height="284" key="GridCell.Tab.0.right/-1920.164.1920.1057/1680.-170.1080.1897/0.23.1680.973@-1920.164.1920.1057" timestamp="1577173737151" />
     <state width="1878" height="275" key="GridCell.Tab.0.right/-1920.164.1920.994/1680.-170.1080.1897/0.23.1680.1027@-1920.164.1920.994" timestamp="1577180137375" />
-    <state width="1878" height="448" key="GridCell.Tab.0.right/-1920.164.1920.996/1680.-170.1080.1897/0.23.1680.1027@-1920.164.1920.996" timestamp="1577353383015" />
+    <state width="1878" height="224" key="GridCell.Tab.0.right/-1920.164.1920.996/1680.-170.1080.1897/0.23.1680.1027@-1920.164.1920.996" timestamp="1577354795806" />
     <state x="-1443" y="225" key="SettingsEditor" timestamp="1577340769530">
       <screen x="-1920" y="164" width="1920" height="996" />
     </state>

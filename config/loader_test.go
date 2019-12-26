@@ -11,15 +11,16 @@ import (
 )
 
 func TestLoader(t *testing.T) {
-	viper.BindEnv("NEON_MODE")
-	viper.BindEnv("CONFIG_PROVIDER")
-	viper.BindEnv("CONFIG_ENDPOINT")
-	viper.BindEnv("CONFIG_PATH")
+	viper.BindEnv(NeonMode)
+	viper.BindEnv(NeonConfigProvider)
+	viper.BindEnv(NeonConfigEndpoint)
+	viper.BindEnv(NeonConfigPath)
+	viper.BindEnv(NeonConfigSecret)
 	os.Setenv(NeonMode, NeonModeDev)
 	os.Setenv(NeonConfigProvider, "etcd")
-	os.Setenv(NeonConfigEndpoint, "http://127.0.0.1:2379")
-	os.Setenv(NeonConfigPath, "/config")
-	// os.Setenv(NeonConfigSecret, "Hello@Goods")
+	os.Setenv(NeonConfigEndpoint, "http://192.168.0.202:12379")
+	os.Setenv(NeonConfigPath, "/config/dev")
+	os.Setenv(NeonConfigSecret, "root@123456")
 	var path = "."
 	require.Nil(t, Load(&path))
 
