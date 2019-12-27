@@ -32,6 +32,7 @@ func TestLoader(t *testing.T) {
 			}
 			require.Nil(t, err)
 			time.Sleep(time.Second * 3)
+			fmt.Println(viper.GetString("Metrics.Address"))
 			fmt.Println("--------------------------------")
 		}
 	})
