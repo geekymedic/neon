@@ -5,30 +5,32 @@ import (
 	"fmt"
 	"path"
 	"strings"
+	"sync"
 	"time"
 
-	"github.com/geekymedic/neon"
-	"github.com/geekymedic/neon/errors"
-	"github.com/geekymedic/neon/logger"
 	"github.com/spf13/viper"
 	"google.golang.org/grpc"
+
+	"github.com/geekymedic/neon"
+	"github.com/geekymedic/neon/logger"
 )
 
 var connections = map[string]*grpc.ClientConn{}
+var lock = &sync.RWMutex{}
 
 func init() {
 
 	neon.AddPlugin("rpc_server", func(status neon.PluginStatus, viper *viper.Viper) error {
 		switch status {
 		case neon.PluginLoad:
-			servers := viper.GetStringMapString("servers")
-			for name, address := range servers {
-				conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithUnaryInterceptor(grpcClientLog()))
-				if err != nil {
-					return errors.By(err)
-				}
-				connections[name] = conn
-			}
+			// servers := viper.GetStringMapString("servers")
+			// for name, address := range servers {
+			// 	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithUnaryInterceptor(grpcClientLog()))
+			// 	if err != nil {
+			// 		return errors.By(err)
+			// 	}
+			// 	connections[name] = conn
+			// }
 		}
 		return nil
 
@@ -36,6 +38,22 @@ func init() {
 }
 
 func GetConnection(name string) *grpc.ClientConn {
+	lock.RLock()
+	conn, ok := connections[name]
+	lock.RUnlock()
+	if ok {
+		return conn
+	}
+	server := fmt.Sprintf("%s", name)
+	address := viper.GetString(server)
+	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithUnaryInterceptor(grpcClientLog()))
+	if err != nil {
+		logger.With("address", address).Error(err)
+		return nil
+	}
+	lock.Lock()
+	connections[strings.ToLower(name)] = conn
+	defer lock.Unlock()
 	return connections[strings.ToLower(name)]
 }
 
