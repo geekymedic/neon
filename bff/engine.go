@@ -22,6 +22,10 @@ func Engine() *gin.RouterGroup {
 	return _group
 }
 
+func RootEngine() *gin.Engine {
+	return _engine
+}
+
 func MockEngine() *gin.Engine {
 	return _engine
 }
