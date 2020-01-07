@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1ef3ca26-f257-4379-848c-dd0e7314ebc0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bff/state.go" beforeDir="false" afterPath="$PROJECT_DIR$/bff/state.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/middleware/grpc_middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/middleware/grpc_middleware.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +50,7 @@
       <recent name="$PROJECT_DIR$/bff" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.TestNewBeanstalkDelayQueue in github.com/geekymedic/neon/pkg/delay-queue">
+  <component name="RunManager" selected="Go Build.go build github.com/geekymedic/neon/examples/bff">
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go test">
       <module name="neon" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -115,7 +115,7 @@
       <pattern value="^TestJsonTime$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestNewBeanstalkDelayQueue in github.com/geekymedic/neon/pkg/delay-queue" type="GoTestRunConfiguration" factoryName="Go $NEON_MODE$" temporary="true" nameIsGenerated="true">
+    <configuration name="TestNewBeanstalkDelayQueue in github.com/geekymedic/neon/pkg/delay-queue" type="GoTestRunConfiguration" factoryName="Go test" temporary="true" nameIsGenerated="true">
       <module name="neon" />
       <working_directory value="$PROJECT_DIR$/pkg/delay-queue" />
       <framework value="gotest" />
@@ -128,7 +128,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Test.TestNewBeanstalkDelayQueue in github.com/geekymedic/neon/pkg/delay-queue" />
         <item itemvalue="Go Build.go build github.com/geekymedic/neon/examples/bff" />
       </list>
     </recent_temporary>

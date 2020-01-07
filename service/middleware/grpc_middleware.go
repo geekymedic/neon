@@ -3,13 +3,15 @@ package middleware
 import (
 	"context"
 	"fmt"
+	"os"
+	"time"
+
 	"github.com/geekymedic/neon"
+	"github.com/geekymedic/neon/errors"
 	"github.com/geekymedic/neon/logger"
 	"github.com/geekymedic/neon/logger/extend"
 	"github.com/geekymedic/neon/metrics/prometheus"
 	"github.com/geekymedic/neon/version"
-	"os"
-	"time"
 
 	"github.com/grpc-ecosystem/go-grpc-middleware"
 	"google.golang.org/grpc"
@@ -32,6 +34,7 @@ func grpcLogMiddleware() grpc.UnaryServerInterceptor {
 		log = log.With("latency", fmt.Sprintf("%v", time.Now().Sub(start)))
 		if err != nil {
 			log.With("err", err).Error("grpc request trace")
+			err = errors.WithMessage(err, "pro_name:%s, service:%s, method:%s", version.PRONAME, fmt.Sprintf("%T", info.Server), info.FullMethod)
 		} else {
 			log.Info("grpc request trace")
 		}
