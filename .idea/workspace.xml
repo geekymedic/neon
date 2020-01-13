@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="1ef3ca26-f257-4379-848c-dd0e7314ebc0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/bff/engine.go" beforeDir="false" afterPath="$PROJECT_DIR$/bff/engine.go" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/service/middleware/grpc_middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/middleware/grpc_middleware.go" afterDir="false" />
+>>>>>>> master
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,19 +42,32 @@
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../storage-system" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../go-beanstalk" />
+    <property name="settings.editor.selected.configurable" value="go.vgo" />
+>>>>>>> master
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/examples/bff" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+<<<<<<< HEAD
       <recent name="$PROJECT_DIR$/config" />
       <recent name="$PROJECT_DIR$/bff" />
     </key>
   </component>
   <component name="RunManager">
+=======
+      <recent name="$PROJECT_DIR$/pkg" />
+      <recent name="$PROJECT_DIR$/bff" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Go Build.go build github.com/geekymedic/neon/examples/bff">
+>>>>>>> master
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go test">
       <module name="neon" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -84,7 +101,11 @@
       <pattern value="^TestLoader$" />
       <method v="2" />
     </configuration>
+<<<<<<< HEAD
     <configuration name="TestLoader/apollo in github.com/geekymedic/neon/config" type="GoTestRunConfiguration" factoryName="Go test" temporary="true" nameIsGenerated="true">
+=======
+    <configuration name="TestJsonTime in github.com/geekymedic/neon/utils/validator/v9" type="GoTestRunConfiguration" factoryName="Go test" temporary="true" nameIsGenerated="true">
+>>>>>>> master
       <module name="neon" />
       <working_directory value="$PROJECT_DIR$/config" />
       <framework value="gotest" />
@@ -95,6 +116,7 @@
       <pattern value="^TestLoader$/^apollo$" />
       <method v="2" />
     </configuration>
+<<<<<<< HEAD
     <configuration name="TestLoader/apollo in github.com/geekymedic/neon/plugin/config" type="GoTestRunConfiguration" factoryName="Go test" temporary="true" nameIsGenerated="true">
       <module name="neon" />
       <working_directory value="$PROJECT_DIR$/plugin/config" />
@@ -115,8 +137,35 @@
       <directory value="$PROJECT_DIR$/" />
       <filePath value="$PROJECT_DIR$/" />
       <pattern value="^TestLoader$/^etcd$" />
+=======
+    <configuration name="TestNewBeanstalkDelayQueue in github.com/geekymedic/neon/pkg/delay-queue" type="GoTestRunConfiguration" factoryName="Go test" temporary="true" nameIsGenerated="true">
+      <module name="neon" />
+      <working_directory value="$PROJECT_DIR$/pkg/delay-queue" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/geekymedic/neon/pkg/delay-queue" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestNewBeanstalkDelayQueue$" />
+>>>>>>> master
       <method v="2" />
     </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+<<<<<<< HEAD
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+=======
+        <item itemvalue="Go Build.go build github.com/geekymedic/neon/examples/bff" />
+>>>>>>> master
+      </list>
+    </option>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -182,6 +231,7 @@
     <proxy>direct</proxy>
   </component>
   <component name="WindowStateProjectService">
+<<<<<<< HEAD
     <state x="668" y="291" key="FileChooserDialogImpl" timestamp="1578276383139">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
@@ -231,5 +281,39 @@
       <screen x="-1920" y="164" width="1920" height="996" />
     </state>
     <state x="-1273" y="384" width="670" height="676" key="search.everywhere.popup/-1920.164.1920.996/1680.-170.1080.1897/0.23.1680.1027@-1920.164.1920.996" timestamp="1577330909333" />
+=======
+    <state x="580" y="258" key="FileChooserDialogImpl" timestamp="1575965212323">
+      <screen x="0" y="23" width="1680" height="960" />
+    </state>
+    <state x="580" y="258" key="FileChooserDialogImpl/-1920.164.1920.1057/1680.-170.1080.1897/0.23.1680.960@-1920.164.1920.1057" timestamp="1575965212323" />
+    <state width="1878" height="303" key="GridCell.Tab.0.bottom" timestamp="1576055442247">
+      <screen x="-1920" y="164" width="1920" height="1057" />
+    </state>
+    <state width="1878" height="364" key="GridCell.Tab.0.bottom/-1920.164.1920.1057/1680.-170.1080.1897/0.23.1680.960@-1920.164.1920.1057" timestamp="1575968583422" />
+    <state width="1878" height="364" key="GridCell.Tab.0.bottom/-1920.164.1920.1057/1680.-170.1080.1897/0.23.1680.961@-1920.164.1920.1057" timestamp="1575978713108" />
+    <state width="1878" height="303" key="GridCell.Tab.0.bottom/-1920.164.1920.1057/1680.-170.1080.1897/0.23.1680.965@-1920.164.1920.1057" timestamp="1576055442247" />
+    <state width="1878" height="303" key="GridCell.Tab.0.center" timestamp="1576055442246">
+      <screen x="-1920" y="164" width="1920" height="1057" />
+    </state>
+    <state width="1878" height="364" key="GridCell.Tab.0.center/-1920.164.1920.1057/1680.-170.1080.1897/0.23.1680.960@-1920.164.1920.1057" timestamp="1575968583421" />
+    <state width="1878" height="364" key="GridCell.Tab.0.center/-1920.164.1920.1057/1680.-170.1080.1897/0.23.1680.961@-1920.164.1920.1057" timestamp="1575978713107" />
+    <state width="1878" height="303" key="GridCell.Tab.0.center/-1920.164.1920.1057/1680.-170.1080.1897/0.23.1680.965@-1920.164.1920.1057" timestamp="1576055442246" />
+    <state width="1878" height="303" key="GridCell.Tab.0.left" timestamp="1576055442245">
+      <screen x="-1920" y="164" width="1920" height="1057" />
+    </state>
+    <state width="1878" height="364" key="GridCell.Tab.0.left/-1920.164.1920.1057/1680.-170.1080.1897/0.23.1680.960@-1920.164.1920.1057" timestamp="1575968583420" />
+    <state width="1878" height="364" key="GridCell.Tab.0.left/-1920.164.1920.1057/1680.-170.1080.1897/0.23.1680.961@-1920.164.1920.1057" timestamp="1575978713106" />
+    <state width="1878" height="303" key="GridCell.Tab.0.left/-1920.164.1920.1057/1680.-170.1080.1897/0.23.1680.965@-1920.164.1920.1057" timestamp="1576055442245" />
+    <state width="1878" height="303" key="GridCell.Tab.0.right" timestamp="1576055442247">
+      <screen x="-1920" y="164" width="1920" height="1057" />
+    </state>
+    <state width="1878" height="364" key="GridCell.Tab.0.right/-1920.164.1920.1057/1680.-170.1080.1897/0.23.1680.960@-1920.164.1920.1057" timestamp="1575968583421" />
+    <state width="1878" height="364" key="GridCell.Tab.0.right/-1920.164.1920.1057/1680.-170.1080.1897/0.23.1680.961@-1920.164.1920.1057" timestamp="1575978713108" />
+    <state width="1878" height="303" key="GridCell.Tab.0.right/-1920.164.1920.1057/1680.-170.1080.1897/0.23.1680.965@-1920.164.1920.1057" timestamp="1576055442247" />
+    <state x="0" y="23" width="1585" height="947" key="dock-window-1" timestamp="1575963970263">
+      <screen x="0" y="23" width="1680" height="960" />
+    </state>
+    <state x="0" y="23" width="1585" height="947" key="dock-window-1/-1920.164.1920.1057/1680.-170.1080.1897/0.23.1680.960@-1920.164.1920.1057" timestamp="1575963970263" />
+>>>>>>> master
   </component>
 </project>

@@ -49,7 +49,7 @@ func init() {
 			}
 			for name, opt := range dsnList {
 				errorlog := log.New(os.Stdout, "APP", log.LstdFlags)
-				client, err := elastic.NewClient(elastic.SetErrorLog(errorlog), elastic.SetURL(opt.DSN),elastic.SetBasicAuth(opt.USER,opt.PASSWORD),elastic.SetHttpClient( &http.Client{
+				client, err := elastic.NewClient(elastic.SetErrorLog(errorlog),elastic.SetSniff(false), elastic.SetURL(opt.DSN),elastic.SetBasicAuth(opt.USER,opt.PASSWORD),elastic.SetHttpClient( &http.Client{
 					Transport:&http.Transport{
 						DialContext: func(ctx context.Context, network, addr string) (conn net.Conn, e error) {
 							var dial = &net.Dialer{

@@ -71,6 +71,14 @@ func (m *State) Error(code int, err error) {
 	m.httpJson(code, empty)
 }
 
+func (m *State) Json(code int, v interface{}, err ...error) {
+	m.Gin.Set(types.ResponseStatusCode, code)
+	if len(err) != 0 {
+		m.Gin.Set(types.ResponseErr, err[0])
+	}
+	m.httpJson(code, v)
+}
+
 func (m *State) ErrorMessage(code int, txt string) {
 	m.Gin.Set(types.ResponseStatusCode, code)
 	if txt != "" {
@@ -91,6 +99,10 @@ func (m *State) Context() context.Context {
 }
 
 func (m *State) GrpcClientCtx() context.Context {
+	return metadata.NewOutgoingContext(context.Background(), metadata.New(m.Session.KeysValues()))
+}
+
+func (m *State) AsyncGrpcCtx() context.Context {
 	return metadata.NewOutgoingContext(context.Background(), metadata.New(m.Session.KeysValues()))
 }
 

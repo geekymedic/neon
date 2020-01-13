@@ -1,5 +1,5 @@
-# github.com/armon/consul-api v0.0.0-20180202201655-eb2c6b5be1b6
-github.com/armon/consul-api
+# github.com/beanstalkd/go-beanstalk v0.0.0-20190515041346-390b03b3064a => github.com/geekymedic/go-beanstalk v0.0.0-20191210081744-8aff47a77476
+github.com/beanstalkd/go-beanstalk
 # github.com/beorn7/perks v1.0.1
 github.com/beorn7/perks/quantile
 # github.com/coreos/etcd v3.3.17+incompatible
@@ -17,12 +17,6 @@ github.com/coreos/etcd/clientv3/balancer/connectivity
 github.com/coreos/etcd/pkg/systemd
 github.com/coreos/etcd/raft
 github.com/coreos/etcd/raft/raftpb
-github.com/coreos/etcd/client
-github.com/coreos/etcd/pkg/pathutil
-github.com/coreos/etcd/pkg/srv
-github.com/coreos/etcd/version
-# github.com/coreos/go-semver v0.2.0
-github.com/coreos/go-semver/semver
 # github.com/coreos/go-systemd v0.0.0-20190321100706-95778dfbb74e
 github.com/coreos/go-systemd/journal
 # github.com/coreos/pkg v0.0.0-20180928190104-399ea9e2e55f
@@ -127,9 +121,16 @@ github.com/prometheus/common/internal/bitbucket.org/ww/goautoneg
 # github.com/prometheus/procfs v0.0.3
 github.com/prometheus/procfs
 github.com/prometheus/procfs/internal/fs
+# github.com/shamaton/msgpack v1.1.1
+github.com/shamaton/msgpack
+github.com/shamaton/msgpack/ext
+github.com/shamaton/msgpack/internal/decoding
+github.com/shamaton/msgpack/internal/encoding
+github.com/shamaton/msgpack/def
+github.com/shamaton/msgpack/internal/common
+github.com/shamaton/msgpack/time
 # github.com/shima-park/agollo v1.1.7
 github.com/shima-park/agollo
-github.com/shima-park/agollo/viper-remote
 # github.com/sirupsen/logrus v1.4.2
 github.com/sirupsen/logrus
 # github.com/spf13/afero v1.1.2
@@ -145,7 +146,6 @@ github.com/spf13/jwalterweatherman
 github.com/spf13/pflag
 # github.com/spf13/viper v1.5.0
 github.com/spf13/viper
-github.com/spf13/viper/remote
 # github.com/stretchr/testify v1.4.0
 github.com/stretchr/testify/assert
 github.com/stretchr/testify/require
@@ -153,12 +153,8 @@ github.com/stretchr/testify/require
 github.com/subosito/gotenv
 # github.com/ugorji/go/codec v1.1.7
 github.com/ugorji/go/codec
-# github.com/xordataexchange/crypt v0.0.3-0.20170626215501-b2862e3d0a77
-github.com/xordataexchange/crypt/config
-github.com/xordataexchange/crypt/backend
-github.com/xordataexchange/crypt/backend/consul
-github.com/xordataexchange/crypt/backend/etcd
-github.com/xordataexchange/crypt/encoding/secconf
+# github.com/zentures/cityhash v0.0.0-20131128155616-cdd6a94144ab
+github.com/zentures/cityhash
 # go.etcd.io/etcd v3.3.18+incompatible
 go.etcd.io/etcd/clientv3
 # go.uber.org/atomic v1.4.0
@@ -172,14 +168,6 @@ go.uber.org/zap/internal/bufferpool
 go.uber.org/zap/buffer
 go.uber.org/zap/internal/color
 go.uber.org/zap/internal/exit
-# golang.org/x/crypto v0.0.0-20191119213627-4f8c1d86b1ba
-golang.org/x/crypto/openpgp
-golang.org/x/crypto/openpgp/armor
-golang.org/x/crypto/openpgp/errors
-golang.org/x/crypto/openpgp/packet
-golang.org/x/crypto/openpgp/s2k
-golang.org/x/crypto/cast5
-golang.org/x/crypto/openpgp/elgamal
 # golang.org/x/net v0.0.0-20191119073136-fc4aabc6c914
 golang.org/x/net/trace
 golang.org/x/net/context
@@ -207,10 +195,11 @@ google.golang.org/grpc
 google.golang.org/grpc/codes
 google.golang.org/grpc/status
 google.golang.org/grpc/grpclog
+google.golang.org/grpc/credentials
+google.golang.org/grpc/keepalive
 google.golang.org/grpc/balancer
 google.golang.org/grpc/balancer/roundrobin
 google.golang.org/grpc/connectivity
-google.golang.org/grpc/credentials
 google.golang.org/grpc/encoding
 google.golang.org/grpc/encoding/proto
 google.golang.org/grpc/internal
@@ -222,7 +211,6 @@ google.golang.org/grpc/internal/envconfig
 google.golang.org/grpc/internal/grpcrand
 google.golang.org/grpc/internal/grpcsync
 google.golang.org/grpc/internal/transport
-google.golang.org/grpc/keepalive
 google.golang.org/grpc/naming
 google.golang.org/grpc/peer
 google.golang.org/grpc/resolver
@@ -231,8 +219,8 @@ google.golang.org/grpc/resolver/passthrough
 google.golang.org/grpc/serviceconfig
 google.golang.org/grpc/stats
 google.golang.org/grpc/tap
-google.golang.org/grpc/balancer/base
 google.golang.org/grpc/credentials/internal
+google.golang.org/grpc/balancer/base
 google.golang.org/grpc/binarylog/grpc_binarylog_v1
 google.golang.org/grpc/internal/syscall
 # gopkg.in/go-playground/validator.v8 v8.18.2
