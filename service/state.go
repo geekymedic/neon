@@ -2,13 +2,15 @@ package service
 
 import (
 	"context"
-	"github.com/geekymedic/neon/logger/extend"
 	"time"
+
+	"github.com/geekymedic/neon/logger/extend"
 
 	"github.com/geekymedic/neon/logger"
 
-	"github.com/geekymedic/neon"
 	"google.golang.org/grpc/metadata"
+
+	"github.com/geekymedic/neon"
 )
 
 var (

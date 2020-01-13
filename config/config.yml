@@ -1,0 +1,7 @@
+Name: "boss-system-services-boss"
+
+OSS:
+  PassWord: "8127300"
+
+MQ:
+  Address: "localhost:8080"
