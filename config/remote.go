@@ -45,7 +45,11 @@ func (rc *remoteConfigProvider) initBackend(rp viper.RemoteProvider) {
 				userName = secretKeyString[0]
 				password = secretKeyString[1]
 			}
-			rc.etcd, err = newEtcdBackend(userName, password, []string{endpoint}, time.Second*3)
+			var endpoints []string
+			for _, endpoint := range strings.Split(endpoint, ",") {
+				endpoints = append(endpoints, endpoint)
+			}
+			rc.etcd, err = newEtcdBackend(userName, password, endpoints, time.Second*3)
 			if err != nil {
 				panic(err)
 			}

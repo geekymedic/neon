@@ -18,7 +18,7 @@ func TestLoader(t *testing.T) {
 	viper.BindEnv(NeonConfigSecret)
 	os.Setenv(NeonMode, NeonModeDev)
 	os.Setenv(NeonConfigProvider, "etcd")
-	os.Setenv(NeonConfigEndpoint, "http://192.168.0.202:12379")
+	os.Setenv(NeonConfigEndpoint, "http://192.168.0.202:12379,http://192.168.0.202:12379")
 	os.Setenv(NeonConfigPath, "/config/dev")
 	os.Setenv(NeonConfigSecret, "root@123456")
 	var path = "."
