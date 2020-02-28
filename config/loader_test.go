@@ -14,7 +14,7 @@ func TestLoader(t *testing.T) {
 	viper.BindEnv(NeonMode)
 	viper.BindEnv(NeonConfigProvider)
 	viper.BindEnv(NeonConfigEndpoint)
-	viper.BindEnv(NeonConfigPath)
+	viper.BindEnv(NeonCo	nfigPath)
 	viper.BindEnv(NeonConfigSecret)
 	os.Setenv(NeonMode, NeonModeDev)
 	os.Setenv(NeonConfigProvider, "etcd")
