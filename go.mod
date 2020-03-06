@@ -4,7 +4,7 @@ go 1.12
 
 require (
 	github.com/beanstalkd/go-beanstalk v0.0.0-20190515041346-390b03b3064a
-	github.com/coreos/etcd v3.3.17+incompatible // indirect
+	github.com/coreos/etcd v3.3.18+incompatible // indirect
 	github.com/fortytw2/leaktest v1.3.0 // indirect
 	github.com/gin-gonic/gin v1.4.0
 	github.com/go-playground/locales v0.12.1 // indirect

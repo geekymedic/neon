@@ -2,7 +2,7 @@
 github.com/beanstalkd/go-beanstalk
 # github.com/beorn7/perks v1.0.1
 github.com/beorn7/perks/quantile
-# github.com/coreos/etcd v3.3.17+incompatible
+# github.com/coreos/etcd v3.3.18+incompatible
 github.com/coreos/etcd/auth/authpb
 github.com/coreos/etcd/clientv3/balancer
 github.com/coreos/etcd/clientv3/balancer/picker

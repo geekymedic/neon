@@ -43,6 +43,7 @@ func Main() error {
 			for _, opt := range beforeAppRun {
 				if err := opt(); err != nil {
 					logger.With("err", err).Error("fail to execute before app run hook")
+					return err
 				}
 			}
 
