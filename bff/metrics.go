@@ -8,6 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"github.com/geekymedic/neon/bff/types"
+	"github.com/geekymedic/neon/logger"
 	"github.com/geekymedic/neon/metrics/prometheus"
 )
 
@@ -39,6 +40,7 @@ func MetricsMiddleWare() func(ctx *gin.Context) {
 
 		// latency
 		{
+			logger.With("metrics", time.Since(start).Seconds()).Info("trace metrics")
 			latencyMetrics.With(method, path, status).Observe(time.Since(start).Seconds())
 			latencyCounterMetrics.With(method, host, path, status).Set(elasp)
 		}
