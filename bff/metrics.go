@@ -18,7 +18,7 @@ func MetricsMiddleWare() func(ctx *gin.Context) {
 		}
 	}
 	var qpsMetrics = prometheus.MustCounterWithLabelNames("request_qps", "method", "host", "path", "status")
-	var latencyCounterMetrics = prometheus.MustGagueWithLabelNames("request_gague_latency", "method", "host", "path", "status")
+	var latencyCounterMetrics = prometheus.MustGagueWithLabelNames("request_gauge_latency", "method", "host", "path", "status")
 	var latencyMetrics = prometheus.MustHistogramWithLabelNames("request_latency_duration_seconds", []float64{0.1, 0.3, 0.5, 0.8, 1, 3}, "method", "path",
 		"status")
 	var responseMetrics = prometheus.MustCounterWithLabelNames("response_status_code", "code", "path", "size")
