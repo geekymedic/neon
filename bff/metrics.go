@@ -5,9 +5,10 @@ import (
 	"os"
 	"time"
 
+	"github.com/gin-gonic/gin"
+
 	"github.com/geekymedic/neon/bff/types"
 	"github.com/geekymedic/neon/metrics/prometheus"
-	"github.com/gin-gonic/gin"
 )
 
 func MetricsMiddleWare() func(ctx *gin.Context) {
@@ -18,9 +19,8 @@ func MetricsMiddleWare() func(ctx *gin.Context) {
 	}
 	var qpsMetrics = prometheus.MustCounterWithLabelNames("request_qps", "method", "host", "path", "status")
 	var latencyCounterMetrics = prometheus.MustGagueWithLabelNames("request_gague_latency", "method", "host", "path", "status")
-	var latencyMetrics = prometheus.MustSummaryWithLabelNames("request_latency", map[float64]float64{
-		0.5: 0.005, 0.9: 0.01, 0.99: 0.001},
-		"method", "path", "status")
+	var latencyMetrics = prometheus.MustHistogramWithLabelNames("request_latency_duration_seconds", []float64{0.1, 0.3, 0.5, 0.8, 1, 3}, "method", "path",
+		"status")
 	var responseMetrics = prometheus.MustCounterWithLabelNames("response_status_code", "code", "path", "size")
 	return func(ctx *gin.Context) {
 		start := time.Now()
@@ -39,7 +39,7 @@ func MetricsMiddleWare() func(ctx *gin.Context) {
 
 		// latency
 		{
-			latencyMetrics.With(method, path, status).Observe(elasp)
+			latencyMetrics.With(method, path, status).Observe(time.Since(start).Seconds())
 			latencyCounterMetrics.With(method, host, path, status).Set(elasp)
 		}
 

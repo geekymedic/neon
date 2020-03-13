@@ -47,6 +47,7 @@ func TestHttpHandleFunc(t *testing.T) {
 	id.Id = "1999"
 	_, err = http.Post("http://localhost:8080/test?_trace=10314&_version=10.30&_uid=100", "Application/json", nil)
 	require.Nil(t, err)
+	time.Sleep(time.Hour)
 }
 
 func TestEngine(t *testing.T) {

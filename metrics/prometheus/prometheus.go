@@ -5,10 +5,11 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/geekymedic/neon/metrics"
-	"github.com/geekymedic/neon/version"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+
+	"github.com/geekymedic/neon/metrics"
+	"github.com/geekymedic/neon/version"
 )
 
 const (
@@ -160,27 +161,28 @@ type Histogram struct {
 	lvs []string
 }
 
-func MustHistogram(name string) *Histogram {
-	return MustHistogramWithLabelNames(name)
+func MustHistogram(name string, buckets []float64) *Histogram {
+	return MustHistogramWithLabelNames(name, buckets)
 }
 
-func NewHistogram(name string) (*Histogram, error) {
-	return NewHistogramWithLabelNames(name)
+func NewHistogram(name string, buckets []float64) (*Histogram, error) {
+	return NewHistogramWithLabelNames(name, buckets)
 }
 
-func MustHistogramWithLabelNames(name string, labelNames ...string) *Histogram {
-	hv, err := NewHistogramWithLabelNames(name, labelNames...)
+func MustHistogramWithLabelNames(name string, buckets []float64, labelNames ...string) *Histogram {
+	hv, err := NewHistogramWithLabelNames(name, buckets, labelNames...)
 	if err != nil {
 		panic(fmt.Sprintf("fail to register Histogram(%s_%s_%s) into promethus component: %v", NameSpacePrometheus, SubSystemPrometheus, name, err))
 	}
 	return hv
 }
 
-func NewHistogramWithLabelNames(name string, labelNames ...string) (*Histogram, error) {
+func NewHistogramWithLabelNames(name string, buckets []float64, labelNames ...string) (*Histogram, error) {
 	opts := prometheus.HistogramOpts{
 		Namespace: NameSpacePrometheus,
 		Subsystem: SubSystemPrometheus,
-		Name:      name}
+		Name:      name,
+		Buckets:   buckets,}
 	var proLabels = prometheus.Labels{}
 	labelNames = append(labelNames, "pro_name")
 	var lvs = make([]string, len(labelNames)*2)
