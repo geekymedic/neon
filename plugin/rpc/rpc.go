@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"path"
-	"strings"
 	"sync"
 	"time"
 
@@ -52,9 +51,9 @@ func GetConnection(name string) *grpc.ClientConn {
 		return nil
 	}
 	lock.Lock()
-	connections[strings.ToLower(name)] = conn
+	connections[name] = conn
 	defer lock.Unlock()
-	return connections[strings.ToLower(name)]
+	return connections[name]
 }
 
 func MockGrpcClientLog() grpc.UnaryClientInterceptor {

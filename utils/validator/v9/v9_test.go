@@ -212,3 +212,16 @@ func TestTime(t *testing.T) {
 		fmt.Println("-->", string(buf))
 	})
 }
+
+type person struct {
+	Lists []Local `binding:"min=1,dive,required"`
+}
+type Local struct {
+	L int `binding:"min=10"`
+}
+
+func TestEl(t *testing.T) {
+	var validator = &defaultValidator{}
+	validator.lazyinit()
+	t.Log(validator.validate.Struct(person{Lists: []Local{}}))
+}
