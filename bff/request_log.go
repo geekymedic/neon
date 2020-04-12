@@ -51,7 +51,11 @@ func RequestTraceMiddle(failOut map[string]interface{}, ignore ...string) gin.Ha
 				param.TimeStamp = time.Now()
 				param.Latency = param.TimeStamp.Sub(start)
 
-				param.ClientIP = c.ClientIP()
+				if ingressIp := c.Request.Header.Get("X-Original-Forwarded-For"); ingressIp != "" {
+					param.ClientIP = ingressIp
+				} else {
+					param.ClientIP = c.ClientIP()
+				}
 				param.Method = c.Request.Method
 				param.StatusCode = c.Writer.Status()
 				param.ErrorMessage = c.Errors.ByType(gin.ErrorTypePrivate).String()
