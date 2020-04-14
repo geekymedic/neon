@@ -70,6 +70,7 @@ func (backend *etcdBackend) Get(ctx context.Context, path string) ([]byte, error
 func (backend *etcdBackend) Watch(ctx context.Context, path string) <-chan Event {
 	backend.once.Do(func() {
 		go func() {
+			fmt.Println("Watch Path:", path)
 			watchChan := backend.cli.Watch(ctx, path, clientv3.WithPrefix())
 			for {
 				select {
