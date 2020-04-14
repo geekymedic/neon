@@ -7,6 +7,7 @@ import (
 	"regexp"
 	"strings"
 	"sync"
+	"time"
 	"unicode"
 	"unicode/utf8"
 
@@ -47,7 +48,7 @@ func (v *defaultValidator) lazyinit() {
 
 		// add any custom validations etc. here
 		v.validate.RegisterValidation("et_contains", func(fl validator.FieldLevel) bool {
-			return ExContains(fl)
+			return EtContains(fl)
 		})
 
 		v.validate.RegisterValidation("et_identity", func(fl validator.FieldLevel) bool {
@@ -66,9 +67,17 @@ func (v *defaultValidator) lazyinit() {
 			return NickName(fl)
 		})
 
-		//v.validate.RegisterValidation("et_cert", func(fl validator.FieldLevel) bool {
+		v.validate.RegisterValidation("et_long_time", func(fl validator.FieldLevel) bool {
+			return EtLongTimeFormat(fl)
+		})
+
+		v.validate.RegisterValidation("et_short_time", func(fl validator.FieldLevel) bool {
+			return EtShortTimeFormat(fl)
+		})
+
+		// v.validate.RegisterValidation("et_cert", func(fl validator.FieldLevel) bool {
 		//	return CertNumber(fl)
-		//})
+		// })
 
 		v.validate.RegisterValidation("et_json", func(fl validator.FieldLevel) bool {
 			return Json(fl)
@@ -87,7 +96,7 @@ func kindOfData(data interface{}) reflect.Kind {
 	return valueType
 }
 
-func ExContains(fl validator.FieldLevel) bool {
+func EtContains(fl validator.FieldLevel) bool {
 	field := fl.Field()
 	kind := field.Kind()
 
@@ -120,6 +129,36 @@ func ExContains(fl validator.FieldLevel) bool {
 		}
 	}
 	return false
+}
+
+func EtLongTimeFormat(fl validator.FieldLevel) bool {
+	field := fl.Field()
+	kind := field.Kind()
+
+	var value string
+	switch kind {
+	case reflect.String:
+		value = field.String()
+	default:
+		return false
+	}
+	_, err := time.ParseInLocation("2006-01-02 15:04:05", value, time.Local)
+	return err == nil
+}
+
+func EtShortTimeFormat(fl validator.FieldLevel) bool {
+	field := fl.Field()
+	kind := field.Kind()
+
+	var value string
+	switch kind {
+	case reflect.String:
+		value = field.String()
+	default:
+		return false
+	}
+	_, err := time.ParseInLocation("2006-01-02", value, time.Local)
+	return err == nil
 }
 
 var identityRegexp = regexp.MustCompile("^(\\d{6})(\\d{8})(.*)")
@@ -182,16 +221,16 @@ func NickName(fl validator.FieldLevel) bool {
 	return true
 }
 
-//var certRegexp = regexp.MustCompile(`/(^(?:(?![IOZSV])[\dA-Z]){2}\d{6}(?:(?![IOZSV])[\dA-Z]){10}$)|(^\d{15}$)/`)
+// var certRegexp = regexp.MustCompile(`/(^(?:(?![IOZSV])[\dA-Z]){2}\d{6}(?:(?![IOZSV])[\dA-Z]){10}$)|(^\d{15}$)/`)
 //
-//func CertNumber(fl validator.FieldLevel) bool {
+// func CertNumber(fl validator.FieldLevel) bool {
 //	value := fl.Field()
 //	if value.Kind() != reflect.String {
 //		return false
 //	}
 //
 //	return certRegexp.MatchString(value.String())
-//}
+// }
 
 func Json(fl validator.FieldLevel) bool {
 	var i interface{}
