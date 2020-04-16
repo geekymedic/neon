@@ -3,6 +3,7 @@ package config
 import (
 	"bytes"
 	"context"
+	"encoding/json"
 	"fmt"
 	"strings"
 	"sync"
@@ -59,7 +60,7 @@ func (backend *etcdBackend) Get(ctx context.Context, path string) ([]byte, error
 		if strings.HasSuffix(key, viper.GetString("name")) {
 			buf.Write(ev.Value)
 			buf.WriteString("\n")
-		}else if strings.HasPrefix(key, "public") {
+		} else if strings.HasPrefix(key, "public") {
 			buf.Write(ev.Value)
 			buf.WriteString("\n")
 		}
@@ -67,16 +68,20 @@ func (backend *etcdBackend) Get(ctx context.Context, path string) ([]byte, error
 	return buf.Bytes(), nil
 }
 
-func (backend *etcdBackend) Watch(ctx context.Context, path string) <-chan Event {
+func (backend *etcdBackend) Watch(_ context.Context, path string) <-chan Event {
 	backend.once.Do(func() {
 		go func() {
 			fmt.Println("Watch Path:", path)
+			ctx := context.TODO()
 			watchChan := backend.cli.Watch(ctx, path, clientv3.WithPrefix())
 			for {
 				select {
 				case <-backend.ctx.Done():
 					return
 				case ev := <-watchChan:
+					buf, _ := json.Marshal(ev)
+					fmt.Println(string(buf))
+					fmt.Printf("%v, %v\n", ev.Err(), ev.IsProgressNotify())
 					backend.watchEvent <- Event{
 						EV: ev,
 					}

@@ -111,7 +111,7 @@ func (rc *remoteConfigProvider) WatchChannel(rp viper.RemoteProvider) (<-chan *v
 			case <-quitwc:
 				return
 			case <-backend.Watch(context.Background(), rp.Path()):
-				fmt.Println("receive a config change event")
+				fmt.Println("Receive a config change event ", rp.Path())
 				buf, err := backend.Get(context.Background(), rp.Path())
 				viperResponseCh <- &viper.RemoteResponse{
 					Error: err,
