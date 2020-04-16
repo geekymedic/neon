@@ -73,12 +73,14 @@ func (backend *etcdBackend) Watch(_ context.Context, path string) <-chan Event {
 		go func() {
 			fmt.Println("Watch Path:", path)
 			ctx := context.TODO()
-			watchChan := backend.cli.Watch(ctx, path, clientv3.WithPrefix())
+			var watchChan clientv3.WatchChan
+			watchChan = backend.cli.Watch(ctx, path, clientv3.WithPrefix())
 			for {
 				select {
 				case <-backend.ctx.Done():
 					return
-				case ev := <-watchChan:
+				case ev, ok := <-watchChan:
+					fmt.Println("Closed Channel", ok)
 					buf, _ := json.Marshal(ev)
 					fmt.Println(string(buf))
 					fmt.Printf("%v, %v\n", ev.Err(), ev.IsProgressNotify())
