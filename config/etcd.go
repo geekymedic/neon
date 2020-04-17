@@ -3,7 +3,6 @@ package config
 import (
 	"bytes"
 	"context"
-	"encoding/json"
 	"fmt"
 	"strings"
 	"sync"
@@ -80,10 +79,11 @@ func (backend *etcdBackend) Watch(_ context.Context, path string) <-chan Event {
 				case <-backend.ctx.Done():
 					return
 				case ev, ok := <-watchChan:
-					fmt.Println("Closed Channel", ok)
-					buf, _ := json.Marshal(ev)
-					fmt.Println(string(buf))
-					fmt.Printf("%v, %v\n", ev.Err(), ev.IsProgressNotify())
+					if !ok {
+						fmt.Println("Watch chanel has closed")
+						watchChan = backend.cli.Watch(ctx, path, clientv3.WithPrefix())
+						continue
+					}
 					backend.watchEvent <- Event{
 						EV: ev,
 					}
