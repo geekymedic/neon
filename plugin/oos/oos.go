@@ -1,4 +1,4 @@
-package oss
+package oos
 
 import (
 	"strings"
@@ -18,8 +18,8 @@ var opts = map[string]struct {
 }{}
 
 func init() {
-	neon.AddPlugin("oss", func(status neon.PluginStatus, viper *viper.Viper) error {
-		err := viper.UnmarshalKey("oss", &opts)
+	neon.AddPlugin("oos", func(status neon.PluginStatus, viper *viper.Viper) error {
+		err := viper.UnmarshalKey("oos", &opts)
 		if err != nil {
 			return err
 		}

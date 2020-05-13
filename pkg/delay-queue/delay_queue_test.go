@@ -16,7 +16,7 @@ func TestNewBeanstalkDelayQueue(t *testing.T) {
 	defer delayQueue.Close()
 	delayQueue.Put("test", 1, time.Second*1, time.Second*2, Task{
 		SequenceId: tool.MD5UUID4(),
-		Body:       []byte("{\"oss\": \"http://localhost.common\"}"),
+		Body:       []byte("{\"oos\": \"http://localhost.common\"}"),
 	})
 	delayQueue.Watch(func(taskId string, task Task) {
 		fmt.Println("taskId:", taskId, "sequence:", task.SequenceId, string(task.Body))
