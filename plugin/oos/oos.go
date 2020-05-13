@@ -9,7 +9,7 @@ import (
 	"github.com/geekymedic/neon"
 )
 
-var ossClient = map[string]*oss.Client{}
+var ossClient = map[string]*oss.Bucket{}
 var opts = map[string]struct {
 	EndPoint    string
 	AccessKeyId string
@@ -29,7 +29,10 @@ func init() {
 			if err != nil {
 				return err
 			}
-			ossClient[key] = client
+			ossClient[key], err = client.Bucket(opt.BucketName)
+			if err != nil {
+				return err
+			}
 		}
 		return nil
 	})
