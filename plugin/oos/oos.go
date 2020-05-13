@@ -38,6 +38,6 @@ func init() {
 	})
 }
 
-func Use(s string) *oss.Client {
+func Use(s string) *oss.Bucket {
 	return ossClient[strings.ToLower(s)]
 }
