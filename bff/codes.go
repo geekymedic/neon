@@ -14,6 +14,7 @@ const (
 	CodeNotLogin               = 1005
 	CodeServerError            = 1006
 	CodeNotAllow               = 1007
+	CodeUnknownError           = 8000
 )
 
 type Codes map[int]string
@@ -30,6 +31,7 @@ var (
 		CodeRequestBodyError:       "请求结构错误",
 		CodeServerError:            "服务器错误",
 		CodeNotAllow:               "权限校验失败",
+		CodeUnknownError:           "未知错误",
 	}
 )
 
