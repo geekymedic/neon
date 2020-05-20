@@ -3,7 +3,7 @@ module github.com/geekymedic/neon
 go 1.12
 
 require (
-	github.com/aliyun/aliyun-oss-go-sdk v2.1.0+incompatible // indirect
+	github.com/aliyun/aliyun-oss-go-sdk v2.1.0+incompatible
 	github.com/beanstalkd/go-beanstalk v0.0.0-20190515041346-390b03b3064a
 	github.com/coreos/etcd v3.3.20+incompatible // indirect
 	github.com/fortytw2/leaktest v1.3.0 // indirect

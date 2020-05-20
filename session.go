@@ -48,6 +48,7 @@ type Session struct {
 	Time        string
 	StoreId     string
 	Path        string
+	ClientIp    string
 	StructError string
 }
 
@@ -70,6 +71,7 @@ func (m *Session) Keys() map[string]*string {
 		"_sequence": &m.Sequence,
 		"_time":     &m.Time,
 		"_storeId":  &m.StoreId,
+		"_clientIp": &m.ClientIp,
 	}
 }
 
@@ -89,6 +91,7 @@ func (m *Session) KeysValues() map[string]string {
 		"_sequence": m.Sequence,
 		"_time":     m.Time,
 		"_storeId":  m.StoreId,
+		"_clientIp": m.ClientIp,
 	}
 }
 
@@ -108,6 +111,7 @@ func (m *Session) ShortLog() []interface{} {
 		"_time", m.Time,
 		"_storeId", m.StoreId,
 		"_path", m.Path,
+		"_clientIp", m.ClientIp,
 		"_struct_error", m.StructError,
 	}
 }
@@ -155,6 +159,7 @@ func createSessionFromGrpcMetadata(md metadata.MD) *Session {
 	session.Time = fn("_time")
 	session.Version = fn("_version")
 	session.StoreId = fn("_storeId")
+	session.ClientIp = fn("_clientIp")
 	return session
 }
 
@@ -172,6 +177,9 @@ func NewSessionFromGinCtx(ctx *gin.Context) *Session {
 	}
 	if s.Trace == "" {
 		s.Trace = uuid.Must(uuid.NewRandom()).String()
+	}
+	if s.ClientIp == "" {
+		s.ClientIp = ctx.ClientIP()
 	}
 	if ctx.Request.URL.RawQuery != "" {
 		s.Path = ctx.Request.URL.Path + "?" + ctx.Request.URL.RawQuery
