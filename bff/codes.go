@@ -14,7 +14,7 @@ const (
 	CodeNotLogin               = 1005
 	CodeServerError            = 1006
 	CodeNotAllow               = 1007
-	CodeUnknownError           = 8000
+	CodeUnknownError           = 1008
 )
 
 type Codes map[int]string
