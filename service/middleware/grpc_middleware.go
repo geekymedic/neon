@@ -93,5 +93,6 @@ func sessionTraceLog(ses *neon.Session) []interface{} {
 		"_sequence", ses.Sequence,
 		"_time", ses.Time,
 		"_storeId", ses.StoreId,
+		"_clientIp", ses.ClientIp,
 	}
 }
