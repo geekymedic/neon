@@ -42,14 +42,13 @@ func init() {
 
 			for name, opt := range dsnList {
 
-				// 建立连接池
-				clinet := redis.NewClient(&redis.Options{
+				client := redis.NewClient(&redis.Options{
 					Addr:     opt.DSN,
-					Password: opt.Password, // no password set
-					DB:       opt.DB,       // use default DB
+					Password: opt.Password,
+					DB:       opt.DB,
 				})
 
-				redisList[name] = clinet
+				redisList[strings.ToLower(name)] = client
 			}
 
 		}
