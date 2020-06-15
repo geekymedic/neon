@@ -2,6 +2,7 @@ package middleware
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 	"time"
@@ -28,6 +29,8 @@ func grpcLogMiddleware() grpc.UnaryServerInterceptor {
 		log = log.With(sessionTraceLog(ses)...).
 			With("pro_name", version.PRONAME,
 				"service", fmt.Sprintf("%T", info.Server), "method", info.FullMethod)
+		buf, _ := json.Marshal(req)
+		log = log.With("inbound", string(buf))
 
 		resp, err = handler(ctx, req)
 
@@ -36,7 +39,8 @@ func grpcLogMiddleware() grpc.UnaryServerInterceptor {
 			log.With("err", err).Error("grpc request trace")
 			err = errors.WithMessage(err, "pro_name:%s, service:%s, method:%s", version.PRONAME, fmt.Sprintf("%T", info.Server), info.FullMethod)
 		} else {
-			log.Info("grpc request trace")
+			buf, _ = json.Marshal(resp)
+			log.With("outbound", string(buf)).Info("grpc request trace")
 		}
 		return resp, err
 	}
