@@ -4,6 +4,7 @@ go 1.12
 
 require (
 	github.com/aliyun/aliyun-oss-go-sdk v2.1.0+incompatible
+	github.com/baiyubin/aliyun-sts-go-sdk v0.0.0-20180326062324-cfa1a18b161f // indirect
 	github.com/beanstalkd/go-beanstalk v0.0.0-20190515041346-390b03b3064a
 	github.com/coreos/etcd v3.3.20+incompatible // indirect
 	github.com/fortytw2/leaktest v1.3.0 // indirect
@@ -22,6 +23,7 @@ require (
 	github.com/onsi/ginkgo v1.8.0 // indirect
 	github.com/onsi/gomega v1.5.0 // indirect
 	github.com/prometheus/client_golang v1.1.0
+	github.com/satori/go.uuid v1.2.0 // indirect
 	github.com/shamaton/msgpack v1.1.1
 	github.com/shima-park/agollo v1.1.7
 	github.com/sirupsen/logrus v1.4.2
@@ -38,7 +40,7 @@ require (
 	google.golang.org/grpc v1.22.1
 	gopkg.in/go-playground/validator.v8 v8.18.2
 	gopkg.in/go-playground/validator.v9 v9.29.1
-	gopkg.in/yaml.v2 v2.2.4
+	gopkg.in/yaml.v2 v2.2.8
 	sigs.k8s.io/yaml v1.1.0 // indirect
 )
 
